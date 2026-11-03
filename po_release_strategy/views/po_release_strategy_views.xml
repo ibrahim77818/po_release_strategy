@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="po_release_strategy_view_tree" model="ir.ui.view">
+        <field name="name">po.release.strategy.tree</field>
+        <field name="model">po.release.strategy</field>
+        <field name="arch" type="xml">
+            <tree string="Release Strategies">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="amount_basis" optional="show"/>
+                <field name="post_approval_action" optional="show"/>
+                <field name="rule_count" string="Rules" optional="show"/>
+                <field name="is_default" widget="boolean" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="po_release_strategy_view_form" model="ir.ui.view">
+        <field name="name">po.release.strategy.form</field>
+        <field name="model">po.release.strategy</field>
+        <field name="arch" type="xml">
+            <form string="Release Strategy">
+                <header>
+                    <button name="action_set_default" type="object" string="Set as Default"
+                            attrs="{'invisible': ['|', ('is_default', '=', True), ('id', '=', False)]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_orders" type="object" class="oe_stat_button" icon="fa-shopping-cart">
+                            <field name="order_count" widget="statinfo" string="Orders"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"/>
+                    <widget name="web_ribbon" title="Default" bg_color="bg-success"
+                            attrs="{'invisible': ['|', ('is_default', '=', False), ('active', '=', False)]}"/>
+                    <field name="active" invisible="1"/>
+                    <field name="is_default" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="lockable_field_ids" invisible="1"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Standard Purchase Approval"/></h1>
+                    </div>
+                    <group>
+                        <group string="Evaluation">
+                            <field name="amount_basis"/>
+                            <field name="currency_id" string="Thresholds Currency" readonly="1"/>
+                            <field name="approval_delay"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                        </group>
+                        <group string="After Approval">
+                            <field name="post_approval_action" widget="radio"/>
+                            <field name="lock_confirmed_policy" widget="radio"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Approval Rules" name="rules">
+                            <field name="rule_ids" context="{'default_strategy_id': active_id}">
+                                <tree editable="bottom">
+                                    <field name="sequence" string="Stage"/>
+                                    <field name="role"/>
+                                    <field name="approver_type"/>
+                                    <field name="user_id" attrs="{'invisible': [('approver_type', '!=', 'user')], 'required': [('approver_type', '=', 'user')]}" widget="many2one_avatar_user"/>
+                                    <field name="group_id" attrs="{'invisible': [('approver_type', '!=', 'group')], 'required': [('approver_type', '=', 'group')]}"/>
+                                    <field name="min_amount"/>
+                                    <field name="max_amount"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </tree>
+                            </field>
+                            <div class="text-muted o_po_release_hint">
+                                Rules with the same stage are approved in parallel; the next stage starts when the current one is complete.
+                                A rule applies when the order amount (company currency) is between its minimum and maximum. A maximum of 0 means no upper limit.
+                            </div>
+                        </page>
+                        <page string="Locked Fields" name="locked_fields">
+                            <field name="locked_field_ids" widget="many2many_tags"
+                                   options="{'no_create': True}" placeholder="Select the fields to lock..."/>
+                            <div class="text-muted o_po_release_hint">
+                                Once an order is submitted, modifying any of these fields resets the release strategy,
+                                clears the previous approvals and notifies all the approvers again.
+                            </div>
+                        </page>
+                        <page string="Description" name="description">
+                            <field name="description" placeholder="Internal notes about this strategy..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="po_release_strategy_view_search" model="ir.ui.view">
+        <field name="name">po.release.strategy.search</field>
+        <field name="model">po.release.strategy</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="rule_ids" string="Approver" filter_domain="['|', ('rule_ids.user_id', 'ilike', self), ('rule_ids.group_id', 'ilike', self)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_action" string="After Final Approval" context="{'group_by': 'post_approval_action'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_po_release_strategy" model="ir.actions.act_window">
+        <field name="name">Release Strategies</field>
+        <field name="res_model">po.release.strategy</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a purchase release strategy</p>
+            <p>Define who must approve purchase orders, in which order and above which amounts.</p>
+        </field>
+    </record>
+</odoo>

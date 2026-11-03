@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_po_release_my_approvals"
+              name="Release Approvals"
+              parent="purchase.menu_procurement_management"
+              action="action_po_release_my_approvals"
+              sequence="7"/>
+    <menuitem id="menu_po_release_strategy"
+              name="Release Strategies"
+              parent="purchase.menu_purchase_config"
+              action="action_po_release_strategy"
+              sequence="5"
+              groups="purchase.group_purchase_manager"/>
+</odoo>

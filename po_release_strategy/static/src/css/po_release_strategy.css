@@ -1,0 +1,24 @@
+/* Purchase release strategy - uses logical properties so the layout mirrors
+   automatically in right-to-left languages such as Arabic. */
+.o_po_release_alert {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-block-end: 0.75rem;
+    border-inline-start-width: 4px;
+    border-inline-start-style: solid;
+    text-align: start;
+}
+
+.o_po_release_alert .o_po_release_inline {
+    display: inline-flex;
+    width: auto !important;
+    margin-inline-start: 0.25rem;
+}
+
+.o_po_release_hint {
+    margin-block-start: 0.5rem;
+    padding-inline-start: 0.25rem;
+    text-align: start;
+}

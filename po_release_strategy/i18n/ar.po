@@ -1,0 +1,1334 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Ibrahim Yahia\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/po_release_strategy.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (نسخة)"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "%s is already released."
+msgstr "تم اعتماد %s بالفعل."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "%s is already submitted."
+msgstr "تم إرسال %s للاعتماد بالفعل."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "%s is not waiting for release approval."
+msgstr "%s ليس بانتظار الاعتماد."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid ""
+"<i class=\"fa fa-check\" role=\"img\" aria-label=\"Released\" title=\"Released\"/>\n"
+"                    <span>This order is released and ready to be confirmed.</span>"
+msgstr ""
+"<i class=\"fa fa-check\" role=\"img\" aria-label=\"معتمد\" title=\"معتمد\"/>\n"
+"                    <span>تم اعتماد هذا الأمر وهو جاهز للتأكيد.</span>"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid ""
+"<i class=\"fa fa-hourglass-half\" role=\"img\" aria-label=\"Waiting\" title=\"Waiting\"/>\n"
+"                    <span>Waiting for release approval by:</span>"
+msgstr ""
+"<i class=\"fa fa-hourglass-half\" role=\"img\" aria-label=\"بالانتظار\" title=\"بالانتظار\"/>\n"
+"                    <span>بانتظار الاعتماد من:</span>"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid ""
+"<i class=\"fa fa-times\" role=\"img\" aria-label=\"Rejected\" title=\"Rejected\"/>\n"
+"                    <span>The release was rejected. Update the order and submit it again.</span>"
+msgstr ""
+"<i class=\"fa fa-times\" role=\"img\" aria-label=\"مرفوض\" title=\"مرفوض\"/>\n"
+"                    <span>تم رفض الاعتماد. قم بتحديث الأمر ثم أرسله للاعتماد مرة أخرى.</span>"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.res_config_settings_view_form_po_release
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"القيم المحددة هنا خاصة "
+"بالشركة.\" groups=\"base.group_multi_company\"/>"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid ""
+"A release strategy is mandatory for purchase order %s. Select one on the "
+"order or set a default strategy in the Purchase settings."
+msgstr ""
+"استراتيجية الاعتماد إلزامية لأمر الشراء %s. اختر استراتيجية في الأمر أو حدد "
+"استراتيجية افتراضية في إعدادات المشتريات."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__action
+msgid "Action"
+msgstr "الإجراء"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_mail_activity
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__activity_ids
+msgid "Activity"
+msgstr "النشاط"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+msgid "Add your comments..."
+msgstr "أضف ملاحظاتك..."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "After Approval"
+msgstr "بعد الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__post_approval_action
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_search
+msgid "After Final Approval"
+msgstr "بعد الاعتماد النهائي"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+msgid ""
+"All approvals will be cleared and the order will need to be submitted again."
+msgstr "سيتم مسح جميع الموافقات وسيلزم إرسال الأمر للاعتماد مرة أخرى."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__amount_basis
+msgid "Amount Basis"
+msgstr "أساس المبلغ"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_bypassed
+msgid "Approval Bypassed"
+msgstr "تم تجاوز الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__approval_delay
+msgid "Approval Deadline (Days)"
+msgstr "مهلة الاعتماد (أيام)"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__rule_ids
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Approval Rules"
+msgstr "قواعد الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy_rule__sequence
+msgid ""
+"Approval stage. Rules sharing the same sequence are approved in parallel; "
+"the next stage starts once the current one is done."
+msgstr ""
+"مرحلة الاعتماد. القواعد ذات التسلسل نفسه تُعتمد بالتوازي، وتبدأ المرحلة "
+"التالية بعد اكتمال المرحلة الحالية."
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_action_wizard__action__approve
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Approve Release"
+msgstr "اعتماد الأمر"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order_release_line__state__approved
+msgid "Approved"
+msgstr "معتمد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__approved_by_id
+msgid "Approved By"
+msgstr "اعتمده"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__approval_date
+msgid "Approved On"
+msgstr "تاريخ الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__user_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__user_id
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_search
+msgid "Approver"
+msgstr "المعتمِد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__group_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__group_id
+msgid "Approver Group"
+msgstr "مجموعة المعتمِدين"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__notes
+msgid "Approver Notes"
+msgstr "ملاحظات المعتمِد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__approver_type
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__approver_type
+msgid "Approver Type"
+msgstr "نوع المعتمِد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__approver_display
+msgid "Approver(s)"
+msgstr "المعتمِدون"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_search
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__assigned_date
+msgid "Assigned On"
+msgstr "تاريخ الإسناد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_strategy__lock_confirmed_policy__block
+msgid "Block the modification"
+msgstr "منع التعديل"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_action_wizard__action__bypass
+msgid "Bypass"
+msgstr "تجاوز"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid "Bypass Approval"
+msgstr "تجاوز الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_bypass_reason
+msgid "Bypass Reason"
+msgstr "سبب التجاوز"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Bypass Release Approval"
+msgstr "تجاوز اعتماد الأمر"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order_release_line__state__bypassed
+msgid "Bypassed"
+msgstr "تم التجاوز"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_bypass_user_id
+msgid "Bypassed By"
+msgstr "تجاوزه"
+
+#. module: po_release_strategy
+#: model:res.groups,comment:po_release_strategy.group_po_release_supervisor
+msgid "Can bypass and reset purchase order release strategies."
+msgstr "يمكنه تجاوز استراتيجيات اعتماد أوامر الشراء وإعادة تعيينها."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order_release_line__state__cancelled
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Cancelled order %s cannot be submitted."
+msgstr "لا يمكن إرسال الأمر الملغي %s للاعتماد."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__lock_confirmed_policy
+msgid "Changes on Confirmed Orders"
+msgstr "التعديلات على الأوامر المؤكدة"
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__company_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__company_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__currency_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__currency_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__currency_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_currency_id
+msgid "Company Currency"
+msgstr "عملة الشركة"
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات"
+
+#. module: po_release_strategy
+#: model:mail.activity.type,name:po_release_strategy.mail_activity_type_po_release_confirm
+msgid "Confirm Released Order"
+msgstr "تأكيد الأمر المعتمد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_strategy__post_approval_action__auto_confirm
+msgid "Confirm the order automatically"
+msgstr "تأكيد الأمر تلقائياً"
+
+#. module: po_release_strategy
+#: model:mail.activity.type,summary:po_release_strategy.mail_activity_type_po_release_confirm
+msgid "Confirm the released purchase order"
+msgstr "تأكيد أمر الشراء المعتمد"
+
+#. module: po_release_strategy
+#: model_terms:ir.actions.act_window,help:po_release_strategy.action_po_release_strategy
+msgid "Create a purchase release strategy"
+msgstr "أنشئ استراتيجية اعتماد للمشتريات"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__create_uid
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__create_uid
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__create_uid
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__create_date
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__create_date
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__create_date
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Default"
+msgstr "افتراضية"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_res_company__po_release_default_strategy_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_res_config_settings__po_release_default_strategy_id
+msgid "Default Release Strategy"
+msgstr "استراتيجية الاعتماد الافتراضية"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__is_default
+msgid "Default Strategy"
+msgstr "الاستراتيجية الافتراضية"
+
+#. module: po_release_strategy
+#: model_terms:ir.actions.act_window,help:po_release_strategy.action_po_release_strategy
+msgid ""
+"Define who must approve purchase orders, in which order and above which "
+"amounts."
+msgstr "حدد من يجب أن يعتمد أوامر الشراء، وبأي ترتيب، وفوق أي مبالغ."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__description
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Description"
+msgstr "الوصف"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__display_name
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__display_name
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__display_name
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Evaluation"
+msgstr "التقييم"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy_rule__role
+msgid "Function of the approver, e.g. Finance Manager."
+msgstr "وظيفة المعتمِد، مثل: المدير المالي."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__id
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__id
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محدداً، فهناك رسائل جديدة تحتاج لرؤيتها."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__message_has_error
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محدداً، فقد حدث خطأ في تسليم بعض الرسائل."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Internal notes about this strategy..."
+msgstr "ملاحظات داخلية حول هذه الاستراتيجية..."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__is_current_user_approver
+msgid "Is Current User Approver"
+msgstr "المستخدم الحالي معتمِد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard____last_update
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy____last_update
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule____last_update
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__write_uid
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__write_uid
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__write_uid
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__write_date
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__write_date
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__write_date
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy_rule__max_amount
+msgid "Leave 0 for no upper limit."
+msgstr "اتركه 0 لعدم وجود حد أعلى."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__lockable_field_ids
+msgid "Lockable Field"
+msgstr "حقل قابل للقفل"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__locked_field_ids
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Locked Fields"
+msgstr "الحقول المقفلة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__max_amount
+msgid "Max Amount"
+msgstr "الحد الأعلى"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__max_amount
+msgid "Maximum Amount"
+msgstr "الحد الأعلى للمبلغ"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__min_amount
+msgid "Min Amount"
+msgstr "الحد الأدنى"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__min_amount
+msgid "Minimum Amount"
+msgstr "الحد الأدنى للمبلغ"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_view_search_po_release
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.view_purchase_order_filter_po_release
+msgid "My Release Approvals"
+msgstr "اعتماداتي"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid ""
+"No approval rule of release strategy \"%s\" applies to this amount: the "
+"order is released automatically."
+msgstr ""
+"لا تنطبق أي قاعدة من استراتيجية الاعتماد \"%s\" على هذا المبلغ: تم اعتماد "
+"الأمر تلقائياً."
+
+#. module: po_release_strategy
+#: model_terms:ir.actions.act_window,help:po_release_strategy.action_po_release_my_approvals
+msgid "No purchase order is waiting for your approval"
+msgstr "لا يوجد أمر شراء بانتظار اعتمادك"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order__release_state__draft
+msgid "Not Submitted"
+msgstr "لم يُرسل"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__notes
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__notes_required
+msgid "Notes Required"
+msgstr "الملاحظات مطلوبة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_strategy__post_approval_action__notify_buyer
+msgid "Notify the buyer to confirm manually"
+msgstr "إشعار المشتري لتأكيد الأمر يدوياً"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__approval_delay
+msgid "Number of days given to approvers to act on their activity."
+msgstr "عدد الأيام الممنوحة للمعتمِدين لإنجاز النشاط."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي حدث بها خطأ في التسليم"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid ""
+"Once an order is submitted, modifying any of these fields resets the release strategy,\n"
+"                                clears the previous approvals and notifies all the approvers again."
+msgstr ""
+"بعد إرسال الأمر للاعتماد، يؤدي تعديل أي من هذه الحقول إلى إعادة تعيين استراتيجية الاعتماد،\n"
+"                                ومسح الموافقات السابقة وإشعار جميع المعتمِدين مرة أخرى."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Only release supervisors can bypass a release strategy."
+msgstr "يمكن لمشرفي الاعتماد فقط تجاوز استراتيجية الاعتماد."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Only requests for quotation can be submitted."
+msgstr "يمكن إرسال طلبات عروض الأسعار فقط للاعتماد."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Only the buyer, purchase managers or release supervisors can reset the "
+"release strategy of %s."
+msgstr ""
+"يمكن للمشتري أو مديري المشتريات أو مشرفي الاعتماد فقط إعادة تعيين استراتيجية"
+" اعتماد %s."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__order_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__order_id
+msgid "Order"
+msgstr "الأمر"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__order_count
+msgid "Order Count"
+msgstr "عدد الأوامر"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__amount_basis
+msgid ""
+"Order amount compared with the rule thresholds, converted to the company "
+"currency."
+msgstr "مبلغ الأمر الذي يُقارن بحدود القواعد بعد تحويله إلى عملة الشركة."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_action_wizard__release_amount_company
+#: model:ir.model.fields,help:po_release_strategy.field_purchase_order__release_amount_company
+msgid ""
+"Order amount converted to the company currency when the order was submitted;"
+" used to select the approval rules."
+msgstr ""
+"مبلغ الأمر محولاً إلى عملة الشركة عند إرساله للاعتماد؛ يُستخدم لاختيار قواعد"
+" الاعتماد."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Order released and confirmed automatically."
+msgstr "تم اعتماد الأمر وتأكيده تلقائياً."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Order released. Waiting for the buyer to confirm it."
+msgstr "تم اعتماد الأمر. بانتظار تأكيده من المشتري."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Order submitted for release approval (%(strategy)s)."
+msgstr "تم إرسال الأمر للاعتماد (%(strategy)s)."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Orders"
+msgstr "الأوامر"
+
+#. module: po_release_strategy
+#: model_terms:ir.actions.act_window,help:po_release_strategy.action_po_release_my_approvals
+msgid "Orders waiting for your release approval will appear here."
+msgstr "ستظهر هنا الأوامر التي بانتظار اعتمادك."
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order_release_line__state__pending
+msgid "Pending Approval"
+msgstr "بانتظار الاعتماد"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/wizard/po_release_action_wizard.py:0
+#, python-format
+msgid "Please fill in the notes."
+msgstr "يرجى إدخال الملاحظات."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Please give a reason for the bypass."
+msgstr "يرجى ذكر سبب التجاوز."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Please give a reason for the rejection."
+msgstr "يرجى ذكر سبب الرفض."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order_release_line.py:0
+#, python-format
+msgid "Please review purchase order %(order)s (%(amount)s) as %(role)s."
+msgstr "يرجى مراجعة أمر الشراء %(order)s (%(amount)s) بصفتك %(role)s."
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_purchase_order
+msgid "Purchase Order"
+msgstr "أمر الشراء"
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "بند أمر الشراء"
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_purchase_order_release_line
+msgid "Purchase Order Release Approval"
+msgstr "اعتماد أمر الشراء"
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_po_release_strategy
+msgid "Purchase Order Release Strategy"
+msgstr "استراتيجية اعتماد أوامر الشراء"
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_po_release_strategy_rule
+msgid "Purchase Order Release Strategy Rule"
+msgstr "قاعدة استراتيجية اعتماد أوامر الشراء"
+
+#. module: po_release_strategy
+#: model:ir.model,name:po_release_strategy.model_po_release_action_wizard
+msgid "Purchase Release Action"
+msgstr "إجراء اعتماد المشتريات"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_res_company__po_release_strategy_enabled
+#: model:ir.model.fields,field_description:po_release_strategy.field_res_config_settings__po_release_strategy_enabled
+msgid "Purchase Release Strategies"
+msgstr "استراتيجيات اعتماد المشتريات"
+
+#. module: po_release_strategy
+#: model:ir.module.category,name:po_release_strategy.module_category_po_release
+msgid "Purchase Release Strategy"
+msgstr "استراتيجية اعتماد المشتريات"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Purchase order %(order)s is released and confirmed. The following fields are"
+" locked by its release strategy: %(fields)s"
+msgstr ""
+"أمر الشراء %(order)s معتمد ومؤكد. الحقول التالية مقفلة بموجب استراتيجية "
+"الاعتماد: %(fields)s"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__locked_field_ids
+msgid ""
+"Purchase order fields frozen by the release strategy. Changing any of them "
+"after submission resets the strategy, clears the approvals and notifies all "
+"approvers again."
+msgstr ""
+"حقول أمر الشراء التي تجمدها استراتيجية الاعتماد. تعديل أي منها بعد الإرسال "
+"يعيد تعيين الاستراتيجية ويمسح الموافقات ويشعر جميع المعتمِدين مرة أخرى."
+
+#. module: po_release_strategy
+#: model:mail.activity.type,summary:po_release_strategy.mail_activity_type_po_release
+msgid "Purchase order release approval"
+msgstr "اعتماد أمر الشراء"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Purchase order(s) %s must be released through their release strategy before "
+"confirmation."
+msgstr ""
+"يجب اعتماد أمر (أوامر) الشراء %s من خلال استراتيجية الاعتماد قبل التأكيد."
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_action_wizard__action__reject
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid "Reject"
+msgstr "رفض"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Reject Release"
+msgstr "رفض الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order__release_state__rejected
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order_release_line__state__rejected
+msgid "Rejected"
+msgstr "مرفوض"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__rejected_by_id
+msgid "Rejected By"
+msgstr "رفضه"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__rejected_date
+msgid "Rejected On"
+msgstr "تاريخ الرفض"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+msgid "Release Action"
+msgstr "إجراء الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__release_amount_company
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_amount_company
+msgid "Release Amount"
+msgstr "مبلغ الاعتماد"
+
+#. module: po_release_strategy
+#: model:mail.activity.type,name:po_release_strategy.mail_activity_type_po_release
+msgid "Release Approval"
+msgstr "اعتماد أمر الشراء"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_mail_activity__po_release_line_id
+msgid "Release Approval Line"
+msgstr "سطر الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.actions.act_window,name:po_release_strategy.action_po_release_my_approvals
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_line_ids
+#: model:ir.ui.menu,name:po_release_strategy.menu_po_release_my_approvals
+msgid "Release Approvals"
+msgstr "الاعتمادات"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_can_approve
+msgid "Release Can Approve"
+msgstr "يمكنه الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_can_reset
+msgid "Release Can Reset"
+msgstr "يمكنه إعادة التعيين"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_prev_state
+msgid "Release Prev State"
+msgstr "الحالة السابقة للاعتماد"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.view_purchase_order_filter_po_release
+msgid "Release Rejected"
+msgstr "الاعتماد مرفوض"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_required
+msgid "Release Required"
+msgstr "الاعتماد مطلوب"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_reset_count
+msgid "Release Resets"
+msgstr "مرات إعادة التعيين"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_snapshot
+msgid "Release Snapshot"
+msgstr "لقطة الحقول المقفلة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_state
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.view_purchase_order_filter_po_release
+msgid "Release Status"
+msgstr "حالة الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.actions.act_window,name:po_release_strategy.action_po_release_strategy
+#: model:ir.ui.menu,name:po_release_strategy.menu_po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_tree
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.res_config_settings_view_form_po_release
+msgid "Release Strategies"
+msgstr "استراتيجيات الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_strategy_id
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.view_purchase_order_filter_po_release
+msgid "Release Strategy"
+msgstr "استراتيجية الاعتماد"
+
+#. module: po_release_strategy
+#: model:res.groups,name:po_release_strategy.group_po_release_supervisor
+msgid "Release Supervisor"
+msgstr "مشرف الاعتماد"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Release approval bypassed by supervisor %s."
+msgstr "تم تجاوز الاعتماد بواسطة المشرف %s."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order_release_line.py:0
+#, python-format
+msgid "Release approval: %s"
+msgstr "اعتماد: %s"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Release rejected by %s."
+msgstr "تم رفض الاعتماد بواسطة %s."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Release rejected: %s"
+msgstr "تم رفض الاعتماد: %s"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order_release_line.py:0
+#, python-format
+msgid ""
+"Release rule \"%(role)s\": no active approver with access to purchase orders"
+" of %(company)s was found (%(approver)s)."
+msgstr ""
+"قاعدة الاعتماد \"%(role)s\": لم يتم العثور على معتمِد نشط لديه صلاحية الوصول"
+" إلى أوامر شراء %(company)s (%(approver)s)."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Release strategies are not enabled for %s."
+msgstr "استراتيجيات الاعتماد غير مفعلة للشركة %s."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_res_company__po_release_default_strategy_id
+#: model:ir.model.fields,help:po_release_strategy.field_res_config_settings__po_release_default_strategy_id
+msgid "Release strategy applied automatically to new purchase orders."
+msgstr "استراتيجية الاعتماد التي تُطبق تلقائياً على أوامر الشراء الجديدة."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Release strategy approved again."
+msgstr "تم اعتماد الأمر مرة أخرى."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Release strategy reset by %s."
+msgstr "تمت إعادة تعيين استراتيجية الاعتماد بواسطة %s."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid ""
+"Release strategy reset: the following locked fields were modified. Previous "
+"approvals have been cleared."
+msgstr ""
+"تمت إعادة تعيين استراتيجية الاعتماد: تم تعديل الحقول المقفلة التالية، وتم "
+"مسح الموافقات السابقة."
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order__release_state__approved
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.view_purchase_order_filter_po_release
+msgid "Released"
+msgstr "معتمد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_approval_date
+msgid "Released On"
+msgstr "تاريخ الاعتماد النهائي"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Released: please confirm this purchase order."
+msgstr "تم الاعتماد: يرجى تأكيد أمر الشراء."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.res_config_settings_view_form_po_release
+msgid "Replaces the native purchase order approval for this company."
+msgstr "تحل محل اعتماد أوامر الشراء الافتراضي لهذه الشركة."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.res_config_settings_view_form_po_release
+msgid ""
+"Require a multi-level release strategy before purchase orders are confirmed"
+msgstr "اشتراط استراتيجية اعتماد متعددة المستويات قبل تأكيد أوامر الشراء"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_action_wizard__action__reset
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid "Reset Release"
+msgstr "إعادة تعيين الاعتماد"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Reset Release Strategy"
+msgstr "إعادة تعيين استراتيجية الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_strategy__lock_confirmed_policy__reset
+msgid "Reset the release strategy"
+msgstr "إعادة تعيين استراتيجية الاعتماد"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "Reset the release strategy of %s before changing it."
+msgstr "أعد تعيين استراتيجية اعتماد %s قبل تغييرها."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__role
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__role
+msgid "Role"
+msgstr "الدور"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__rule_id
+msgid "Rule"
+msgstr "القاعدة"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/po_release_strategy.py:0
+#, python-format
+msgid "Rule \"%s\": amounts cannot be negative."
+msgstr "القاعدة \"%s\": لا يمكن أن تكون المبالغ سالبة."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/po_release_strategy.py:0
+#, python-format
+msgid "Rule \"%s\": select the approver group."
+msgstr "القاعدة \"%s\": اختر مجموعة المعتمِدين."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/po_release_strategy.py:0
+#, python-format
+msgid "Rule \"%s\": select the approver user."
+msgstr "القاعدة \"%s\": اختر المستخدم المعتمِد."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/po_release_strategy.py:0
+#, python-format
+msgid "Rule \"%s\": the maximum amount must be greater than the minimum amount."
+msgstr "القاعدة \"%s\": يجب أن يكون الحد الأعلى أكبر من الحد الأدنى."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__rule_count
+msgid "Rule Count"
+msgstr "عدد القواعد"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_tree
+msgid "Rules"
+msgstr "القواعد"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid ""
+"Rules with the same stage are approved in parallel; the next stage starts when the current one is complete.\n"
+"                                A rule applies when the order amount (company currency) is between its minimum and maximum. A maximum of 0 means no upper limit."
+msgstr ""
+"القواعد ذات المرحلة نفسها تُعتمد بالتوازي، وتبدأ المرحلة التالية عند اكتمال المرحلة الحالية.\n"
+"                                تنطبق القاعدة عندما يكون مبلغ الأمر (بعملة الشركة) بين حديها الأدنى والأعلى. الحد الأعلى 0 يعني بلا حد أعلى."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل النصية"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Select the fields to lock..."
+msgstr "اختر الحقول المراد قفلها..."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__sequence
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__sequence
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Set as Default"
+msgstr "تعيين كافتراضية"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_strategy_rule__approver_type__user
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order_release_line__approver_type__user
+msgid "Specific User"
+msgstr "مستخدم محدد"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid "Stage"
+msgstr "المرحلة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__strategy_id
+msgid "Strategy"
+msgstr "الاستراتيجية"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_form_po_release
+msgid "Submit for Approval"
+msgstr "إرسال للاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_submit_date
+msgid "Submitted On"
+msgstr "تاريخ الإرسال"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_purchase_order__release_required
+msgid "Technical: the company enforces purchase release strategies."
+msgstr "تقني: الشركة تفرض استراتيجيات اعتماد المشتريات."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/po_release_strategy.py:0
+#, python-format
+msgid "The approval deadline cannot be negative."
+msgstr "لا يمكن أن تكون مهلة الاعتماد سالبة."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/po_release_strategy.py:0
+#, python-format
+msgid "The following fields cannot be locked by a release strategy: %s"
+msgstr "لا يمكن قفل الحقول التالية بواسطة استراتيجية الاعتماد: %s"
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "The order was re-approved."
+msgstr "تم اعتماد الأمر مجدداً."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid ""
+"The release strategy \"%(strategy)s\" belongs to another company than "
+"purchase order %(order)s."
+msgstr ""
+"استراتيجية الاعتماد \"%(strategy)s\" تتبع شركة مختلفة عن شركة أمر الشراء "
+"%(order)s."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "The release strategy of %s must belong to the same company."
+msgstr "يجب أن تتبع استراتيجية اعتماد %s الشركة نفسها."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_action_wizard_view_form
+msgid ""
+"The remaining approval stages will be skipped and the post-approval action "
+"applied immediately."
+msgstr "سيتم تخطي مراحل الاعتماد المتبقية وتطبيق إجراء ما بعد الاعتماد فوراً."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/mail_activity.py:0
+#, python-format
+msgid ""
+"This activity belongs to a purchase release strategy. Use the \"Approve\" or"
+" \"Reject\" buttons on the purchase order instead."
+msgstr ""
+"هذا النشاط تابع لاستراتيجية اعتماد المشتريات. استخدم زر \"اعتماد\" أو "
+"\"رفض\" في أمر الشراء بدلاً من ذلك."
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "Thresholds Currency"
+msgstr "عملة الحدود"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_strategy__amount_basis__total
+msgid "Total (taxes included)"
+msgstr "الإجمالي (شامل الضرائب)"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_strategy__amount_basis__untaxed
+msgid "Untaxed Amount"
+msgstr "المبلغ قبل الضريبة"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__po_release_strategy_rule__approver_type__group
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order_release_line__approver_type__group
+msgid "User Group"
+msgstr "مجموعة مستخدمين"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order_release_line__state__waiting
+msgid "Waiting"
+msgstr "بالانتظار"
+
+#. module: po_release_strategy
+#: model:ir.model.fields.selection,name:po_release_strategy.selection__purchase_order__release_state__pending
+msgid "Waiting Approval"
+msgstr "بانتظار الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_pending_user_ids
+msgid "Waiting For"
+msgstr "بانتظار"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.purchase_order_view_search_po_release
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.view_purchase_order_filter_po_release
+msgid "Waiting Release"
+msgstr "بانتظار الاعتماد"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_po_release_strategy__lock_confirmed_policy
+msgid ""
+"What happens when a locked field is modified on an order that is already "
+"confirmed."
+msgstr "ما يحدث عند تعديل حقل مقفل في أمر مؤكد بالفعل."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,help:po_release_strategy.field_res_company__po_release_strategy_enabled
+#: model:ir.model.fields,help:po_release_strategy.field_res_config_settings__po_release_strategy_enabled
+msgid ""
+"When enabled, every purchase order of this company must go through a release"
+" strategy before it can be confirmed."
+msgstr ""
+"عند التفعيل، يجب أن يمر كل أمر شراء لهذه الشركة باستراتيجية اعتماد قبل "
+"تأكيده."
+
+#. module: po_release_strategy
+#. odoo-python
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#: code:addons/po_release_strategy/models/purchase_order.py:0
+#, python-format
+msgid "You are not an approver of the current release stage of %s."
+msgstr "لست معتمِداً في مرحلة الاعتماد الحالية للأمر %s."
+
+#. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__role_names
+msgid "Your Role(s)"
+msgstr "دورك"
+
+#. module: po_release_strategy
+#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
+msgid "e.g. Standard Purchase Approval"
+msgstr "مثال: الاعتماد القياسي للمشتريات"

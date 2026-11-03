@@ -1,0 +1,240 @@
+<!-- Odoo Apps description page for po_release_strategy (Odoo 16.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
+<section style="max-width:1120px;margin:0 auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#2b2b33;">
+
+<!-- ============================== HERO ============================== -->
+<div style="background:linear-gradient(120deg,#017E84 0%,#3d6b78 45%,#714B67 100%);border-radius:18px;padding:48px 40px 40px;color:#ffffff;margin-top:12px;">
+  <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:10px;">Purchase &middot; Approvals &middot; Internal Control</div>
+  <h1 style="font-size:40px;line-height:1.15;font-weight:700;margin:0 0 14px;color:#ffffff;">Purchase Order Release Strategy</h1>
+  <p style="font-size:19px;line-height:1.55;max-width:760px;margin:0 0 24px;color:#ffffff;opacity:.95;">Route every purchase order through a multi-level, amount-based approval matrix: the right people approve, in the right order, with a complete audit trail. Once released, the order is confirmed automatically or handed back to the buyer, and any change to a locked field sends it back for approval.</p>
+  <div>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 16.0</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Community &amp; Enterprise</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">28 automated tests</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">English &amp; Arabic (RTL)</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Technical name: po_release_strategy</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">LGPL-3</span>
+  </div>
+</div>
+
+<!-- ============================== KEY NUMBERS ============================== -->
+<div style="display:flex;flex-wrap:wrap;margin:28px -8px 8px;">
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">Unlimited stages</div><div style="font-size:15px;color:#555;">Sequenced approval levels, with parallel approvers inside a stage</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">2 approver types</div><div style="font-size:15px;color:#555;">A specific user, or any member of a user group</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">1 currency</div><div style="font-size:15px;color:#555;">Thresholds in company currency; foreign orders converted at the order date</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">0 silent edits</div><div style="font-size:15px;color:#555;">Changing a locked field clears the approvals and notifies every approver</div></div>
+</div>
+
+<!-- ============================== WHY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Why this module</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Standard Odoo offers one approval threshold. Real procurement policies need several levels, named roles and proof of who approved what.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #f1d6d6;background:#fff8f8;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 16</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li><b>Purchase Order Approval</b> has a <b>single level</b> and a single minimum amount.</li>
+      <li>Any <b>Purchase Administrator</b> can approve; there are no named roles or approver groups.</li>
+      <li>Approvers get <b>no assigned activity</b>; they have to look for orders "To Approve".</li>
+      <li>No record of <b>when</b> the approval was requested, <b>who</b> approved and <b>why</b>.</li>
+      <li>No <b>reject with reason</b> and no audited <b>bypass</b> for emergencies.</li>
+      <li>An approved order can be <b>edited afterwards</b> without the approval being questioned.</li>
+    </ul>
+  </div>
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #cfe7e7;background:#f4fbfb;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#017E84;margin:0 0 12px;">With this module</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li><b>Release strategies</b> with as many stages and amount ranges as your policy needs.</li>
+      <li>Each rule names a <b>Role</b> and a <b>Specific User</b> or a <b>User Group</b>.</li>
+      <li>Each approver of the current stage gets a <b>Release Approval</b> activity with a deadline.</li>
+      <li>Every line logs <b>Assigned On</b>, <b>Approved On</b>, <b>Approved By</b> and <b>Approver Notes</b>.</li>
+      <li><b>Reject</b> (reason required), <b>Reset Release</b> and supervisor <b>Bypass Approval</b> (reason required).</li>
+      <li><b>Locked Fields</b>: any change resets the strategy, clears approvals and re-notifies approvers.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================== HOW IT WORKS ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">How it works</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Four steps from RFQ to confirmed purchase order.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;">
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">1</div><div style="font-weight:700;margin-bottom:4px;">Configure</div><div style="font-size:14px;color:#555;">Enable release strategies for the company and define templates with stages, roles, approvers and amount ranges.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">2</div><div style="font-weight:700;margin-bottom:4px;">Submit</div><div style="font-size:14px;color:#555;">The buyer clicks <b>Submit for Approval</b>. Matching rules become approval lines and the first stage gets its activities.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">3</div><div style="font-weight:700;margin-bottom:4px;">Approve</div><div style="font-size:14px;color:#555;">Approvers <b>Approve</b> or <b>Reject</b> with notes. Each completed stage starts the next one automatically.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #cfe7e7;background:#f4fbfb;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#017E84;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">4</div><div style="font-weight:700;margin-bottom:4px;">Release</div><div style="font-size:14px;color:#555;">The order is confirmed automatically, or the buyer gets a <b>Confirm Released Order</b> activity. Locked fields stay guarded.</div></div>
+</div>
+
+<!-- ============================== FEATURES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Features</h2>
+<p style="font-size:16px;color:#555;margin:0 0 6px;">Screenshots use a demo company, <b>Gulf Trading Co.</b> (USD), with a buyer (Sara), a Purchase Manager (Omar), a <b>Finance Approvers</b> group (Layla, Khalid), a CFO (Yousef) and three release strategies.</p>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Menus</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Everything where purchasers already work</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;"><b>Purchase &rsaquo; Orders &rsaquo; Release Approvals</b> lists the orders waiting for you. <b>Purchase &rsaquo; Configuration &rsaquo; Release Strategies</b> holds the templates (Purchase Administrators). The switch lives in <b>Purchase &rsaquo; Configuration &rsaquo; Settings &rsaquo; Orders</b>.</p>
+  <img src="prs_01_menu.png" alt="Purchase Orders menu with the new Release Approvals entry" style="width:100%;max-width:760px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 1</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">One switch makes a release strategy mandatory</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Tick <b>Purchase Release Strategies</b> (company-specific, off by default) and pick a <b>Default Release Strategy</b>. From then on every purchase order of the company needs a strategy before it can be confirmed; the default is filled in automatically on new orders, and the native <b>Purchase Order Approval</b> is no longer used for that company.</p>
+  <img src="prs_02_settings.png" alt="Purchase settings with Purchase Release Strategies enabled and a default strategy" style="width:100%;max-width:1000px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 2</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Strategy templates with stages, roles and amount ranges</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Create as many templates as you need. Each <b>Approval Rule</b> has a <b>Stage</b>, a <b>Role</b>, an <b>Approver Type</b> (<b>Specific User</b> or <b>User Group</b>) and a <b>Minimum Amount</b> / <b>Maximum Amount</b> in company currency. Per template you also choose the <b>Amount Basis</b> (total or untaxed), the <b>Approval Deadline (Days)</b>, what happens <b>After Final Approval</b> and how <b>Changes on Confirmed Orders</b> are handled.</p>
+  <img src="prs_03_strategy_list.png" alt="List of release strategies with amount basis, post-approval action and default flag" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="prs_04_strategy_rules.png" alt="Standard Purchase Approval with three stages: Purchase Manager, Finance Controller group above 10,000 and CFO above 50,000" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="font-size:13px;color:#777;margin:6px 0 0;">Standard Purchase Approval: the Purchase Manager approves everything, Finance Approvers join from $&nbsp;10,000, the CFO from $&nbsp;50,000.</div>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 3</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Submit for approval, approvers get an activity</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">While an order is not released, <b>Confirm Order</b> is replaced by <b>Submit for Approval</b>. Submitting moves the order to <b>To Approve</b>, generates the approval lines for the rules matching the amount, and schedules a <b>Release Approval</b> activity for each approver of the first stage. A banner shows <b>Waiting for release approval by</b> and the approvers concerned; only they see <b>Approve</b> and <b>Reject</b>.</p>
+  <img src="prs_06_waiting_approval.png" alt="Purchase order waiting for release approval with Approve and Reject buttons" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="prs_11_rfq_list_status.png" alt="Requests for quotation list with the Release Status column" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="font-size:13px;color:#777;margin:6px 0 0;">The <b>Release Status</b> column and the activities make the state of every RFQ visible at a glance.</div>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 4</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Approve with notes; the activity completes itself</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;"><b>Approve</b> opens a short dialog showing the <b>Release Amount</b> and <b>Your Role(s)</b>, with optional notes. Confirming completes the approver&rsquo;s activity (the notes become its feedback in the chatter), removes the same activity from the other members of a group, and starts the next stage when the current one is complete.</p>
+  <img src="prs_08_approve_wizard.png" alt="Approve Release dialog with release amount, role and notes" style="width:100%;max-width:1000px;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="prs_19_chatter_approval_log.png" alt="Chatter with the CFO planned activity and completed approvals with notes" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 5</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">A full approval log on every order</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The <b>Release Strategy</b> tab shows the <b>Release Status</b>, the <b>Release Amount</b> in company currency, <b>Submitted On</b> / <b>Released On</b>, and one line per rule with <b>Stage</b>, <b>Role</b>, <b>Approver(s)</b>, <b>State</b>, <b>Assigned On</b>, <b>Approved On</b>, <b>Approved By</b> and <b>Approver Notes</b>. Here a $&nbsp;72,450 order has passed the manager and finance stages and waits for the CFO.</p>
+  <img src="prs_09_multi_stage_log.png" alt="Three-stage approval log: two stages approved with notes, CFO pending" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 6</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">&ldquo;Release Approvals&rdquo;: your personal queue</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;"><b>Purchase &rsaquo; Orders &rsaquo; Release Approvals</b> opens with the <b>My Release Approvals</b> filter: every order where you hold a pending release activity, RFQs and confirmed orders alike. The filters <b>Waiting Release</b>, <b>Released</b>, <b>Release Rejected</b> and the groupings <b>Release Status</b> / <b>Release Strategy</b> are also added to the standard purchase searches.</p>
+  <img src="prs_10_my_release_approvals.png" alt="Release Approvals list filtered on My Release Approvals" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 7</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Foreign-currency orders are normalized before the rules apply</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Thresholds are always in the company currency. When an order is in another currency, its amount (total or untaxed, depending on the strategy) is converted with Odoo&rsquo;s exchange rates at the order date, and the result is stored as the <b>Release Amount</b>. Rules sharing a stage, like Purchase Manager and Finance Controller below, are approved in parallel.</p>
+  <img src="prs_16_foreign_currency.png" alt="EUR purchase order with a release amount of 57,065.22 USD and three approval lines" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-top:14px;"><b>Worked example:</b> a CNC machine ordered for &euro;&nbsp;52,500 untaxed under the <b>Capex</b> strategy (amount basis: untaxed). At 1&nbsp;USD = 0.92&nbsp;EUR the release amount is 52,500 &divide; 0.92 = <b>$&nbsp;57,065.22</b>, which is &ge; $&nbsp;25,000, so the <b>Chief Financial Officer</b> stage is added after the manager and finance stage.</div>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 8</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Reject with a reason, reset when needed</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;"><b>Reject</b> requires a reason. The approver&rsquo;s line becomes <b>Rejected</b>, the remaining lines <b>Cancelled</b>, the order returns to RFQ and the buyer receives a to-do with the reason. The buyer fixes the order and clicks <b>Submit for Approval</b> again. <b>Reset Release</b> (buyer, Purchase Administrator or Release Supervisor) clears every approval at any time before confirmation.</p>
+  <img src="prs_12_rejected.png" alt="Rejected purchase order with the rejection reason in the approval log" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 9</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Supervisor bypass, fully audited</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Users with the <b>Release Supervisor</b> right see <b>Bypass Approval</b>. A reason is mandatory; the remaining lines become <b>Bypassed</b>, their activities are removed and the post-approval action runs immediately. The order keeps <b>Approval Bypassed</b>, <b>Bypassed By</b> and <b>Bypass Reason</b>.</p>
+  <img src="prs_13_bypass_wizard.png" alt="Bypass Release Approval dialog with a mandatory reason" style="width:100%;max-width:1000px;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="prs_14_bypassed.png" alt="Released purchase order with bypassed approval lines and the bypass reason" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 10</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">After final approval: confirm automatically or hand back to the buyer</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">With <b>Confirm the order automatically</b>, the last approval confirms the purchase order and the normal flow continues (receipts with Inventory, bills). With <b>Notify the buyer to confirm manually</b>, the order returns to RFQ marked <b>Released</b>, <b>Confirm Order</b> becomes available and the buyer gets a <b>Confirm Released Order</b> activity, which is closed when the order is confirmed.</p>
+  <img src="prs_17_released_confirm.png" alt="Released RFQ waiting for the buyer to confirm, with a Confirm Released Order activity" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 11</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Locked fields: change it, and it goes back for approval</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">On each strategy, select the purchase order fields to lock (for example <b>Vendor</b>, <b>Order Lines</b>, <b>Total</b>, <b>Currency</b>, <b>Payment Terms</b>). Their values are captured when the order is submitted. If one of them changes while the order is waiting or after release, the strategy is reset, previous approvals are cleared, the approval lines are regenerated, new activities are scheduled and every previous and new approver is notified in the chatter. For orders already confirmed you choose per strategy: <b>Reset the release strategy</b> (the order stays confirmed and a new approval is requested) or <b>Block the modification</b>.</p>
+  <img src="prs_05_strategy_locked_fields.png" alt="Capex strategy with locked fields and the block policy for confirmed orders" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="prs_15_locked_field_reset.png" alt="Confirmed purchase order waiting for re-approval after a quantity change" style="width:100%;margin-bottom:22px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <img src="prs_20_chatter_reset_notification.png" alt="Chatter notification listing the modified locked fields" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="font-size:13px;color:#777;margin:6px 0 0;">The quantity on a confirmed order went from 60 to 95: approvals were cleared and the Purchase Manager was asked again.</div>
+</div>
+
+<!-- ============================== STATUSES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Release statuses</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">The order carries a <b>Release Status</b>; each approval line has its own state.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #e8e8ee;border-radius:14px;padding:22px 24px;font-size:15px;color:#3a3a42;">
+    <div style="font-weight:700;margin-bottom:12px;">Order</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#dbeafe;color:#1d4ed8;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Not Submitted</span> new or reset order</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#fef3c7;color:#b45309;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Waiting Approval</span> at least one stage pending</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#d1fae5;color:#047857;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Released</span> all stages approved or bypassed</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#fee2e2;color:#b91c1c;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Rejected</span> an approver rejected; resubmit after changes</div>
+  </div>
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #e8e8ee;border-radius:14px;padding:22px 24px;font-size:15px;color:#3a3a42;">
+    <div style="font-weight:700;margin-bottom:12px;">Approval line</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#f3f4f6;color:#555;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Waiting</span> a later stage, no activity yet</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#fef3c7;color:#b45309;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Pending Approval</span> activity assigned, waiting for decision</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#d1fae5;color:#047857;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Approved / Bypassed</span> decision logged with date, user and notes</div>
+    <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#fee2e2;color:#b91c1c;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Rejected / Cancelled</span> rejected line, and the lines it stopped</div>
+  </div>
+</div>
+<div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-top:14px;"><b>Rule matching:</b> a rule applies when <b>Minimum Amount &le; release amount &le; Maximum Amount</b>; a maximum of 0 means no upper limit. Rules with the same <b>Stage</b> run in parallel, and the next stage starts when all lines of the current stage are approved. If no rule matches, the order is released immediately and the chatter says so.</div>
+
+<!-- ============================== CORNER CASES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Built for real-world corner cases</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Each of these is covered by the automated tests.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;font-size:15px;line-height:1.55;">
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Receipts and bills</b><br/><span style="color:#555;">Received and billed quantities are not part of the locked snapshot, so receiving goods or creating bills never resets an approval. With Inventory installed, receipts are created only once the order is released.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Group members without access</b><br/><span style="color:#555;">Members who cannot read purchase orders, or who are archived or not allowed in the company, get no activity. A rule left with nobody eligible blocks submission with a clear message.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>"Mark Done" from the chatter</b><br/><span style="color:#555;">Release activities cannot be marked done or cancelled by hand: decisions go through Approve / Reject, so the log and the activities never disagree.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Native approve button</b><br/><span style="color:#555;">The standard <b>Approve Order</b> button is hidden while a strategy applies, and calling it is refused until the order is released.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Cancel, duplicate, set to draft</b><br/><span style="color:#555;">Cancelling clears the approval lines and activities. A duplicate keeps the strategy but starts as <b>Not Submitted</b>.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Switching strategy mid-way</b><br/><span style="color:#555;">The strategy cannot be changed while the order is waiting or released; reset first, so approvals always match their rules.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi-currency and taxes</b><br/><span style="color:#555;">Amounts are converted to company currency at the order date; choose total or untaxed per strategy so heavy taxes do not push an order into a higher stage.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi-company</b><br/><span style="color:#555;">The switch and the default strategy are per company; strategies, rules and approval lines follow multi-company record rules, and an order cannot use another company&rsquo;s strategy.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Module off = standard Odoo</b><br/><span style="color:#555;">With the setting disabled, the native purchase flow and approval are untouched: Odoo&rsquo;s own purchase and purchase_stock test suites pass with the module installed.</span></div>
+</div>
+
+<!-- ============================== SECURITY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Security</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Release Supervisor is set in <b>Settings &rsaquo; Users &rsaquo; Access Rights &rsaquo; Inventory &rsaquo; Purchase Release Strategy</b>.</p>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Who</th><th style="text-align:left;padding:10px 14px;">Can</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:260px;"><b>Purchase / User</b> (buyer)</td><td style="padding:10px 14px;">Submit orders, reset the release of their own orders, read strategies and approval logs.</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;"><b>Approvers</b> (user or group member of a rule)</td><td style="padding:10px 14px;">Approve or reject only the lines of the current stage assigned to them. Approval lines are written by the module, never edited by hand.</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;"><b>Purchase / Administrator</b></td><td style="padding:10px 14px;">Create and edit release strategies and reset the release of any order. Enabling the setting itself is done by a Settings administrator.</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;"><b>Release Supervisor</b></td><td style="padding:10px 14px;">Bypass approvals (reason required) and reset any release. Implies Purchase / User.</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;"><b>Multi-company</b></td><td style="padding:10px 14px;">Record rules restrict strategies, rules and approval lines to the user&rsquo;s allowed companies.</td></tr>
+  </tbody>
+</table>
+<img src="prs_18_user_rights.png" alt="User access rights with Purchase Release Strategy set to Release Supervisor" style="width:100%;max-width:680px;margin-top:18px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+
+<!-- ============================== TECHNICAL ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Technical details</h2>
+<table style="width:100%;border-collapse:collapse;font-size:15px;margin-top:12px;">
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Odoo version</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">16.0, Community and Enterprise</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Depends on</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;"><code>purchase</code>, <code>mail</code> (works with <code>purchase_stock</code> when installed)</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Python dependencies</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">None</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Menus</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">Purchase &rsaquo; Orders &rsaquo; Release Approvals; Purchase &rsaquo; Configuration &rsaquo; Release Strategies</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Settings</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">Purchase &rsaquo; Configuration &rsaquo; Settings &rsaquo; Orders &rsaquo; Purchase Release Strategies, Default Release Strategy</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Models</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;"><code>po.release.strategy</code>, <code>po.release.strategy.rule</code>, <code>purchase.order.release.line</code>, wizard <code>po.release.action.wizard</code>; extends <code>purchase.order</code>, <code>purchase.order.line</code>, <code>mail.activity</code>, <code>res.company</code></td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Activity types</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">Release Approval, Confirm Released Order</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">Automated tests</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">28 tests: settings and defaults, single and multi-stage flows, groups and parallel stages, currency conversion and amount basis, reject / reset / bypass, activity protection, cancel and duplicate, notify-buyer mode, locked fields on draft and confirmed orders, receipts with Inventory, forms</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;color:#777;">Translations</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">Arabic (<code>ar_001</code>), right-to-left ready</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;color:#777;">License</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">LGPL-3</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== CONTACT ============================== -->
+<div style="margin:52px 0 40px;background:linear-gradient(120deg,#714B67 0%,#017E84 100%);border-radius:18px;padding:36px 40px;color:#fff;">
+  <h2 style="font-size:26px;font-weight:700;margin:0 0 8px;color:#fff;">Support &amp; customization</h2>
+  <p style="font-size:16px;line-height:1.6;margin:0 0 20px;color:#fff;opacity:.95;">Questions, a demo, or an adaptation to your own approval policy? Get in touch.</p>
+  <a href="mailto:ibrahim.yahiah@gmail.com" style="display:inline-block;background:#fff;color:#714B67;font-weight:700;text-decoration:none;border-radius:8px;padding:12px 22px;margin:0 12px 10px 0;">&#9993;&nbsp; ibrahim.yahiah@gmail.com</a>
+  <a href="https://www.linkedin.com/in/ibrahim-yahia" target="_blank" rel="noopener" style="display:inline-block;border:2px solid #fff;color:#fff;font-weight:700;text-decoration:none;border-radius:8px;padding:10px 22px;margin:0 0 10px 0;">LinkedIn: Ibrahim Yahia</a>
+  <p style="font-size:13px;margin:14px 0 0;opacity:.8;color:#fff;">Author: Ibrahim Yahia &middot; License: LGPL-3</p>
+</div>
+
+</section>

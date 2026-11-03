@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_po_release_strategy_user,po.release.strategy user,model_po_release_strategy,purchase.group_purchase_user,1,0,0,0
+access_po_release_strategy_manager,po.release.strategy manager,model_po_release_strategy,purchase.group_purchase_manager,1,1,1,1
+access_po_release_strategy_rule_user,po.release.strategy.rule user,model_po_release_strategy_rule,purchase.group_purchase_user,1,0,0,0
+access_po_release_strategy_rule_manager,po.release.strategy.rule manager,model_po_release_strategy_rule,purchase.group_purchase_manager,1,1,1,1
+access_purchase_order_release_line_user,purchase.order.release.line user,model_purchase_order_release_line,purchase.group_purchase_user,1,0,0,0
+access_po_release_action_wizard_user,po.release.action.wizard user,model_po_release_action_wizard,purchase.group_purchase_user,1,1,1,0
