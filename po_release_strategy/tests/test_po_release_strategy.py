@@ -32,7 +32,7 @@ class TestPoReleaseStrategy(TransactionCase):
             groups=f'base.group_user,{purchase_user},po_release_strategy.group_po_release_supervisor')
         cls.finance_group = cls.env['res.groups'].create({
             'name': 'Release Finance Approvers',
-            'users': [Command.link(cls.fin1.id), Command.link(cls.fin2.id)],
+            'user_ids': [Command.link(cls.fin1.id), Command.link(cls.fin2.id)],
         })
 
         cls.partner = cls.env['res.partner'].create({'name': 'Release Vendor'})
@@ -78,7 +78,7 @@ class TestPoReleaseStrategy(TransactionCase):
                 'product_id': self.product.id,
                 'product_qty': qty,
                 'price_unit': price,
-                'taxes_id': False,
+                'tax_ids': False,
             })],
         }
         if currency:
@@ -107,7 +107,7 @@ class TestPoReleaseStrategy(TransactionCase):
         po = self._create_po(price=50000)
         self.assertFalse(po.release_required)
         po.with_user(self.manager).button_confirm()
-        self.assertIn(po.state, ('purchase', 'done', 'to approve'))
+        self.assertIn(po.state, ('purchase', 'to approve'))
         self.assertEqual(po.release_state, 'draft')
         self.assertFalse(po.release_line_ids)
 
@@ -179,7 +179,7 @@ class TestPoReleaseStrategy(TransactionCase):
             lambda m: m.mail_activity_type_id == self.activity_type)
         self.assertTrue(done_msg, 'completing the activity posts a "done" message')
         self.assertEqual(po.release_state, 'approved')
-        self.assertIn(po.state, ('purchase', 'done'))
+        self.assertEqual(po.state, 'purchase')
         self.assertTrue(po.release_approval_date)
 
     def test_11_no_rule_applies_auto_release(self):
@@ -187,7 +187,7 @@ class TestPoReleaseStrategy(TransactionCase):
         po = self._create_po(price=10)
         po.button_confirm()
         self.assertEqual(po.release_state, 'approved')
-        self.assertIn(po.state, ('purchase', 'done'))
+        self.assertEqual(po.state, 'purchase')
         self.assertFalse(po.release_line_ids)
 
     # ------------------------------------------------------------------
@@ -216,7 +216,7 @@ class TestPoReleaseStrategy(TransactionCase):
         self.assertEqual(finance_line.state, 'approved')
         self.assertEqual(finance_line.approved_by_id, self.fin2)
         self.assertFalse(self._release_activities(po), "other members' activities removed")
-        self.assertIn(po.state, ('purchase', 'done'))
+        self.assertEqual(po.state, 'purchase')
 
     def test_21_parallel_stage(self):
         self.strategy.rule_ids.filtered(lambda r: r.role == 'Finance').write(
@@ -231,11 +231,36 @@ class TestPoReleaseStrategy(TransactionCase):
 
     def test_22_group_member_without_access_skipped(self):
         portal_less = new_test_user(self.env, 'rs_noaccess', groups='base.group_user', name='No Access')
-        self.finance_group.users = [Command.link(portal_less.id)]
+        self.finance_group.user_ids = [Command.link(portal_less.id)]
         po = self._create_po(price=20000)
         po.button_confirm()
         self._wizard(po, self.manager, 'approve')
         self.assertNotIn(portal_less, self._release_activities(po).user_id)
+
+    def test_23_group_member_through_implied_group(self):
+        """v19: members who get the approver group via an implied group are approvers too."""
+        indirect = new_test_user(self.env, 'rs_indirect', groups='base.group_user,purchase.group_purchase_user',
+                                 name='Indirect Finance')
+        wrapper = self.env['res.groups'].create({
+            'name': 'Finance Department', 'implied_ids': [Command.link(self.finance_group.id)],
+            'user_ids': [Command.link(indirect.id)]})
+        self.assertIn(indirect, self.finance_group.all_user_ids)
+        self.assertTrue(wrapper)
+        po = self._create_po(price=20000)
+        po.button_confirm()
+        self._wizard(po, self.manager, 'approve')
+        self.assertIn(indirect, self._release_activities(po).user_id)
+        self._wizard(po, indirect, 'approve', 'Approved through the department group')
+        self.assertEqual(po.state, 'purchase')
+
+    def test_24_submit_runs_native_confirmation_checks(self):
+        po = self._create_po(price=100)
+        po.order_line[0].product_id = False
+        with self.assertRaises(UserError):
+            po.with_user(self.buyer).action_release_submit()
+        with self.assertRaises(UserError):
+            po.with_user(self.buyer).button_confirm()
+        self.assertEqual(po.release_state, 'draft')
 
     # ------------------------------------------------------------------
     # currency normalization
@@ -268,7 +293,7 @@ class TestPoReleaseStrategy(TransactionCase):
         tax = self.env['account.tax'].create({
             'name': 'RS 100%', 'amount': 100.0, 'type_tax_use': 'purchase'})
         po = self._create_po(price=6000)
-        po.order_line.taxes_id = tax
+        po.order_line.tax_ids = tax
         self.assertEqual(po.amount_total, 12000.0)
         po.button_confirm()
         self.assertEqual(len(po.release_line_ids), 2)
@@ -328,7 +353,7 @@ class TestPoReleaseStrategy(TransactionCase):
         self.assertEqual(po.release_bypass_user_id, self.supervisor)
         self.assertEqual(po.release_bypass_reason, 'Emergency purchase')
         self.assertFalse(self._release_activities(po))
-        self.assertIn(po.state, ('purchase', 'done'))
+        self.assertEqual(po.state, 'purchase')
 
     def test_43_activity_cannot_be_completed_manually(self):
         po = self._create_po(price=100)
@@ -373,7 +398,7 @@ class TestPoReleaseStrategy(TransactionCase):
         confirm_activity = po.activity_ids.filtered(lambda a: a.activity_type_id == self.confirm_type)
         self.assertEqual(confirm_activity.user_id, self.buyer)
         po.with_user(self.buyer).button_confirm()
-        self.assertIn(po.state, ('purchase', 'done'))
+        self.assertEqual(po.state, 'purchase')
         self.assertFalse(po.activity_ids.filtered(lambda a: a.activity_type_id == self.confirm_type))
 
     # ------------------------------------------------------------------
@@ -410,13 +435,13 @@ class TestPoReleaseStrategy(TransactionCase):
         self.assertEqual(po.release_state, 'pending')
         # adding a line also resets
         po.with_user(self.buyer).write({'order_line': [Command.create({
-            'product_id': self.product.id, 'product_qty': 1, 'price_unit': 1, 'taxes_id': False})]})
+            'product_id': self.product.id, 'product_qty': 1, 'price_unit': 1, 'tax_ids': False})]})
         self.assertEqual(po.release_reset_count, 2)
 
     def test_62_unlocked_field_does_not_reset(self):
         po = self._create_po(price=100)
         po.button_confirm()
-        po.write({'notes': '<p>internal remark</p>', 'date_planned': fields.Datetime.now()})
+        po.write({'note': '<p>internal remark</p>', 'date_planned': fields.Datetime.now()})
         self.assertEqual(po.release_reset_count, 0)
         self.assertEqual(po.release_state, 'pending')
 
@@ -424,8 +449,9 @@ class TestPoReleaseStrategy(TransactionCase):
         po = self._create_po(price=100)
         po.button_confirm()
         self._wizard(po, self.manager, 'approve')
-        self.assertIn(po.state, ('purchase', 'done'))
-        po.button_unlock() if po.state == 'done' else None
+        self.assertEqual(po.state, 'purchase')
+        if po.locked:
+            po.button_unlock()
         po.order_line.write({'price_unit': 150})
         self.assertEqual(po.state, 'purchase', 'confirmed order keeps its state')
         self.assertEqual(po.release_state, 'pending')
@@ -434,15 +460,36 @@ class TestPoReleaseStrategy(TransactionCase):
         self.assertEqual(po.release_state, 'approved')
         self.assertEqual(po.state, 'purchase')
 
+    def test_63b_confirmed_quantity_change_resets_once(self):
+        """One change must give exactly one reset, even when v19 recomputes and
+        rewrites the line while the change is being checked."""
+        self.strategy.locked_field_ids = [Command.link(self.f_amount_total.id)]
+        po = self._create_po(price=100, qty=60)
+        po.button_confirm()
+        self._wizard(po, self.manager, 'approve')
+        self.assertEqual(po.state, 'purchase')
+        if po.locked:
+            po.button_unlock()
+        messages_before = po.message_ids
+        po.order_line.with_user(self.buyer).write({'product_qty': 95})
+        self.assertEqual(po.release_reset_count, 1)
+        reset_msgs = (po.message_ids - messages_before).filtered(
+            lambda m: 'locked fields were modified' in (m.body or ''))
+        self.assertEqual(len(reset_msgs), 1)
+        self.assertIn('Total', reset_msgs.body)
+        self.assertIn('Order Lines', reset_msgs.body)
+        self.assertEqual(po.release_state, 'pending')
+
     def test_64_confirmed_order_block_policy(self):
         self.strategy.lock_confirmed_policy = 'block'
         po = self._create_po(price=100)
         po.button_confirm()
         self._wizard(po, self.manager, 'approve')
-        po.button_unlock() if po.state == 'done' else None
+        if po.locked:
+            po.button_unlock()
         with self.assertRaises(UserError):
             po.write({'partner_ref': 'CHANGED'})
-        po.write({'notes': '<p>allowed</p>'})
+        po.write({'note': '<p>allowed</p>'})
         self.assertEqual(po.release_state, 'approved')
 
     def test_65_strategy_change_needs_reset(self):
@@ -451,6 +498,23 @@ class TestPoReleaseStrategy(TransactionCase):
         po.button_confirm()
         with self.assertRaises(UserError):
             po.release_strategy_id = other
+
+    def test_66_lockable_fields_include_editable_computed(self):
+        names = self.env['purchase.order']._po_release_lockable_field_names()
+        # editable even when computed (computed + readonly=False since v18)
+        for name in ('partner_id', 'currency_id', 'order_line', 'amount_total', 'payment_term_id'):
+            self.assertIn(name, names)
+        for name in ('state', 'name', 'invoice_status', 'mail_reception_declined', 'release_state',
+                     'locked', 'acknowledged', 'reference_ids'):
+            self.assertNotIn(name, names)
+        # locking the currency resets a pending release
+        self.strategy.locked_field_ids = [Command.link(
+            self.env['ir.model.fields']._get('purchase.order', 'currency_id').id)]
+        po = self._create_po(price=100)
+        po.button_confirm()
+        other = self.env['res.currency'].create({'name': 'RSY', 'symbol': 'Y', 'rounding': 0.01})
+        po.currency_id = other
+        self.assertEqual(po.release_reset_count, 1)
 
     # ------------------------------------------------------------------
     # UI
@@ -490,7 +554,7 @@ class TestPoReleaseStrategy(TransactionCase):
         if 'picking_ids' not in self.env['purchase.order']._fields:
             self.skipTest('purchase_stock is not installed')
         stockable = self.env['product.product'].create({
-            'name': 'Release Stockable', 'type': 'product', 'taxes_id': False,
+            'name': 'Release Stockable', 'type': 'consu', 'is_storable': True, 'taxes_id': False,
             'supplier_taxes_id': False})
         po = self._create_po(price=20000)
         po.order_line.product_id = stockable
@@ -502,7 +566,7 @@ class TestPoReleaseStrategy(TransactionCase):
         self.assertEqual(len(po.picking_ids), 1)
         # receiving goods must not trigger the locked-field reset
         picking = po.picking_ids
-        picking.move_ids.quantity_done = 1
+        picking.move_ids.write({'quantity': 1, 'picked': True})
         picking.button_validate()
         self.assertEqual(po.order_line.qty_received, 1)
         self.assertEqual(po.release_state, 'approved')

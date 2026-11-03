@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from contextlib import contextmanager
 
 from markupsafe import Markup, escape
 
@@ -12,6 +13,9 @@ from .mail_activity import RELEASE_CTX
 # Context keys
 SKIP_CHECK_CTX = 'po_release_skip_lock_check'
 DEFER_CHECK_CTX = 'po_release_defer_lock_check'
+# Transaction-scoped state kept in env.cr.cache (v19: env.transaction uses __slots__)
+WRITE_DEPTH_KEY = 'po_release_write_depth'
+CHECKING_KEY = 'po_release_checking'
 
 RELEASE_STATES = [
     ('draft', 'Not Submitted'),
@@ -30,6 +34,9 @@ NON_LOCKABLE_FIELDS = {
     'effective_date', 'mail_reminder_confirmed', 'mail_reception_confirmed',
     'group_id', 'picking_ids', 'priority', 'is_shipped', 'tax_totals',
     'country_code', 'tax_country_id', 'amount_total_cc', 'user_id',
+    'mail_reception_declined', 'locked', 'lock_confirmed_po',
+    # v19: vendor acknowledgement, stock references and reminder settings
+    'acknowledged', 'reference_ids', 'receipt_reminder_email', 'reminder_date_before_receipt',
 }
 # Computed totals that are still meaningful to freeze.
 LOCKABLE_COMPUTED_FIELDS = {'amount_untaxed', 'amount_tax', 'amount_total'}
@@ -53,7 +60,7 @@ class PurchaseOrder(models.Model):
         'purchase.order.release.line', 'order_id', string='Release Approvals',
         copy=False)
     release_currency_id = fields.Many2one(
-        related='company_id.currency_id', string='Company Currency')
+        related='company_id.currency_id', string='Release Currency')
     release_amount_company = fields.Monetary(
         string='Release Amount', currency_field='release_currency_id',
         copy=False, readonly=True,
@@ -175,12 +182,29 @@ class PurchaseOrder(models.Model):
                 continue
             if field.type == 'one2many' and name != 'order_line':
                 continue
-            if field.compute and name not in LOCKABLE_COMPUTED_FIELDS:
+            # pure computed values cannot be edited by users; computed fields
+            # that stay editable (v18: currency_id, date_planned, ...) can be locked
+            if field.compute and field.readonly and name not in LOCKABLE_COMPUTED_FIELDS:
                 continue
             if field.related:
                 continue
             names.append(name)
         return names
+
+    @contextmanager
+    def _po_release_write_scope(self):
+        """Track nested writes on orders/lines within the transaction.
+
+        Yields True for the outermost write only, so the locked-field check runs
+        once, after the ORM has finished the write and its side effects (v19
+        recomputations such as _reset_price_unit write back to the lines)."""
+        cache = self.env.cr.cache
+        depth = cache.get(WRITE_DEPTH_KEY, 0)
+        cache[WRITE_DEPTH_KEY] = depth + 1
+        try:
+            yield depth == 0
+        finally:
+            cache[WRITE_DEPTH_KEY] = depth
 
     # ----- locked fields snapshot -----
     @staticmethod
@@ -196,8 +220,8 @@ class PurchaseOrder(models.Model):
         if field_name == 'order_line':
             return [
                 [line.id, line.display_type or '', line.product_id.id, line.name or '',
-                 norm(line.product_qty), line.product_uom.id, norm(line.price_unit),
-                 sorted(line.taxes_id.ids)]
+                 norm(line.product_qty), line.product_uom_id.id, norm(line.price_unit),
+                 sorted(line.tax_ids.ids)]  # v19: taxes_id renamed to tax_ids
                 for line in value.sorted('id')
             ]
         if field.type == 'many2one':
@@ -233,26 +257,45 @@ class PurchaseOrder(models.Model):
     def _po_release_changed_fields(self):
         """Names of locked fields whose value differs from the snapshot."""
         self.ensure_one()
-        raw = self.sudo().release_snapshot
-        if not raw:
+        if not self.sudo().release_snapshot:
             return []
-        stored = json.loads(raw)
+        # Build the current values first: reading the lines can trigger v19
+        # recomputations that write back to them (e.g. _reset_price_unit) and
+        # re-enter this check, which may store a fresh snapshot. Reading the
+        # stored snapshot afterwards avoids comparing against a stale one.
         current = json.loads(json.dumps(self._po_release_build_snapshot(),
                                         sort_keys=True, default=str))
+        raw = self.sudo().release_snapshot
+        if not raw or self.release_state not in ('pending', 'approved'):
+            return []
+        stored = json.loads(raw)
         return [name for name in stored if stored.get(name) != current.get(name)]
 
     def _po_release_check_locked_changes(self):
         if self.env.context.get(SKIP_CHECK_CTX) or self.env.context.get(DEFER_CHECK_CTX):
             return
+        cache = self.env.cr.cache
+        if cache.get(CHECKING_KEY):
+            # re-entered from a recomputation triggered by the running check
+            return
         orders = self.exists().filtered(
             lambda o: o.release_state in ('pending', 'approved')
             and o.state != 'cancel' and o.sudo().release_snapshot)
-        for order in orders:
+        if not orders:
+            return
+        cache[CHECKING_KEY] = True
+        try:
+            orders._po_release_apply_locked_changes()
+        finally:
+            cache[CHECKING_KEY] = False
+
+    def _po_release_apply_locked_changes(self):
+        for order in self:
             changed = order._po_release_changed_fields()
             if not changed:
                 continue
             labels = [order._fields[n].get_description(self.env)['string'] for n in changed]
-            if (order.state in ('purchase', 'done')
+            if (order.state == 'purchase'
                     and order.release_strategy_id.lock_confirmed_policy == 'block'):
                 raise UserError(_(
                     'Purchase order %(order)s is released and confirmed. The '
@@ -284,8 +327,10 @@ class PurchaseOrder(models.Model):
                         'Reset the release strategy of %s before changing it.', order.name))
         if self.env.context.get(SKIP_CHECK_CTX):
             return super().write(vals)
-        res = super(PurchaseOrder, self.with_context(**{DEFER_CHECK_CTX: True})).write(vals)
-        self._po_release_check_locked_changes()
+        with self._po_release_write_scope() as outermost:
+            res = super(PurchaseOrder, self.with_context(**{DEFER_CHECK_CTX: True})).write(vals)
+        if outermost:
+            self._po_release_check_locked_changes()
         return res
 
     @api.constrains('release_strategy_id', 'company_id')
@@ -312,10 +357,13 @@ class PurchaseOrder(models.Model):
             and o.release_state != 'approved')
         if to_release:
             for order in to_release:
+                error_msg = order._confirmation_error_message()
+                if error_msg:
+                    raise UserError(error_msg)
                 order.order_line._validate_analytic_distribution()
             to_release._po_release_submit()
         res = super(PurchaseOrder, self - to_release).button_confirm()
-        (self - to_release).filtered(lambda o: o.state in ('purchase', 'done'))._po_release_close_buyer_activity()
+        (self - to_release).filtered(lambda o: o.state == 'purchase')._po_release_close_buyer_activity()
         return res
 
     def button_approve(self, force=False):
@@ -391,8 +439,6 @@ class PurchaseOrder(models.Model):
                 vals['release_prev_state'] = order.state
                 vals['state'] = 'to approve'
             sudo_order.write(vals)
-            if order.partner_id not in order.message_partner_ids:
-                sudo_order.message_subscribe([order.partner_id.id])
             sudo_order.env['purchase.order.release.line'].create(
                 order._po_release_prepare_lines(strategy, amount))
             order._po_release_store_snapshot()
@@ -427,7 +473,7 @@ class PurchaseOrder(models.Model):
                 'release_approval_date': fields.Datetime.now(),
             })
             strategy = order.release_strategy_id
-            if order.state in ('purchase', 'done'):
+            if order.state == 'purchase':
                 order.message_post(body=_('Release strategy approved again.'))
                 order._po_release_notify_buyer(_('The order was re-approved.'))
                 continue
@@ -464,7 +510,7 @@ class PurchaseOrder(models.Model):
             previous_users = self.env['res.users']
             for line in order.release_line_ids:
                 previous_users |= line._get_approver_users()
-            was_confirmed = order.state in ('purchase', 'done')
+            was_confirmed = order.state == 'purchase'
             prev_state = order.release_prev_state
             sudo_order._po_release_clear()
             sudo_order.release_reset_count += 1
@@ -518,6 +564,9 @@ class PurchaseOrder(models.Model):
                 raise UserError(_('Only requests for quotation can be submitted.'))
             if order.release_state not in ('draft', 'rejected'):
                 raise UserError(_('%s is already submitted.', order.name))
+            error_msg = order._confirmation_error_message()
+            if error_msg:
+                raise UserError(error_msg)
             order.order_line._validate_analytic_distribution()
         self._po_release_submit()
         return True
@@ -622,17 +671,23 @@ class PurchaseOrderLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        lines = super().create(vals_list)
-        self._po_release_check_orders(lines.order_id)
+        with self.env['purchase.order']._po_release_write_scope() as outermost:
+            lines = super().create(vals_list)
+        if outermost:
+            self._po_release_check_orders(lines.order_id)
         return lines
 
     def write(self, vals):
-        res = super().write(vals)
-        self._po_release_check_orders(self.order_id)
+        with self.env['purchase.order']._po_release_write_scope() as outermost:
+            res = super().write(vals)
+        if outermost:
+            self._po_release_check_orders(self.order_id)
         return res
 
     def unlink(self):
         orders = self.order_id
-        res = super().unlink()
-        self._po_release_check_orders(orders)
+        with self.env['purchase.order']._po_release_write_scope() as outermost:
+            res = super().unlink()
+        if outermost:
+            self._po_release_check_orders(orders)
         return res

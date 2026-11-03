@@ -4,7 +4,7 @@
         <field name="name">po.release.strategy.tree</field>
         <field name="model">po.release.strategy</field>
         <field name="arch" type="xml">
-            <tree string="Release Strategies">
+            <list string="Release Strategies">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="amount_basis" optional="show"/>
@@ -12,7 +12,7 @@
                 <field name="rule_count" string="Rules" optional="show"/>
                 <field name="is_default" widget="boolean" optional="show"/>
                 <field name="company_id" groups="base.group_multi_company" optional="show"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -23,7 +23,7 @@
             <form string="Release Strategy">
                 <header>
                     <button name="action_set_default" type="object" string="Set as Default"
-                            attrs="{'invisible': ['|', ('is_default', '=', True), ('id', '=', False)]}"/>
+                            invisible="is_default or not id"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -31,10 +31,8 @@
                             <field name="order_count" widget="statinfo" string="Orders"/>
                         </button>
                     </div>
-                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                            attrs="{'invisible': [('active', '=', True)]}"/>
-                    <widget name="web_ribbon" title="Default" bg_color="bg-success"
-                            attrs="{'invisible': ['|', ('is_default', '=', False), ('active', '=', False)]}"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <widget name="web_ribbon" title="Default" bg_color="text-bg-success" invisible="not is_default or not active"/>
                     <field name="active" invisible="1"/>
                     <field name="is_default" invisible="1"/>
                     <field name="currency_id" invisible="1"/>
@@ -57,17 +55,17 @@
                     </group>
                     <notebook>
                         <page string="Approval Rules" name="rules">
-                            <field name="rule_ids" context="{'default_strategy_id': active_id}">
-                                <tree editable="bottom">
+                            <field name="rule_ids">
+                                <list editable="bottom">
                                     <field name="sequence" string="Stage"/>
                                     <field name="role"/>
                                     <field name="approver_type"/>
-                                    <field name="user_id" attrs="{'invisible': [('approver_type', '!=', 'user')], 'required': [('approver_type', '=', 'user')]}" widget="many2one_avatar_user"/>
-                                    <field name="group_id" attrs="{'invisible': [('approver_type', '!=', 'group')], 'required': [('approver_type', '=', 'group')]}"/>
+                                    <field name="user_id" invisible="approver_type != 'user'" required="approver_type == 'user'" widget="many2one_avatar_user"/>
+                                    <field name="group_id" invisible="approver_type != 'group'" required="approver_type == 'group'"/>
                                     <field name="min_amount"/>
                                     <field name="max_amount"/>
-                                    <field name="currency_id" invisible="1"/>
-                                </tree>
+                                    <field name="currency_id" column_invisible="True"/>
+                                </list>
                             </field>
                             <div class="text-muted o_po_release_hint">
                                 Rules with the same stage are approved in parallel; the next stage starts when the current one is complete.
@@ -87,10 +85,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
-                </div>
+                <chatter/>
             </form>
         </field>
     </record>
@@ -103,7 +98,7 @@
                 <field name="name"/>
                 <field name="rule_ids" string="Approver" filter_domain="['|', ('rule_ids.user_id', 'ilike', self), ('rule_ids.group_id', 'ilike', self)]"/>
                 <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_action" string="After Final Approval" context="{'group_by': 'post_approval_action'}"/>
                 </group>
             </search>
@@ -113,7 +108,7 @@
     <record id="action_po_release_strategy" model="ir.actions.act_window">
         <field name="name">Release Strategies</field>
         <field name="res_model">po.release.strategy</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create a purchase release strategy</p>
             <p>Define who must approve purchase orders, in which order and above which amounts.</p>

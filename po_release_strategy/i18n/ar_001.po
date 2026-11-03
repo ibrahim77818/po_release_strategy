@@ -1,7 +1,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: Ibrahim Yahia\n"
 "Language-Team: Arabic\n"
@@ -14,29 +14,24 @@ msgstr ""
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/po_release_strategy.py:0
-#, python-format
 msgid "%s (copy)"
 msgstr "%s (نسخة)"
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "%s is already released."
 msgstr "تم اعتماد %s بالفعل."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "%s is already submitted."
 msgstr "تم إرسال %s للاعتماد بالفعل."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "%s is not waiting for release approval."
 msgstr "%s ليس بانتظار الاعتماد."
 
@@ -68,18 +63,8 @@ msgstr ""
 "                    <span>تم رفض الاعتماد. قم بتحديث الأمر ثم أرسله للاعتماد مرة أخرى.</span>"
 
 #. module: po_release_strategy
-#: model_terms:ir.ui.view,arch_db:po_release_strategy.res_config_settings_view_form_po_release
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"القيم المحددة هنا خاصة "
-"بالشركة.\" groups=\"base.group_multi_company\"/>"
-
-#. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid ""
 "A release strategy is mandatory for purchase order %s. Select one on the "
 "order or set a default strategy in the Purchase settings."
@@ -170,7 +155,6 @@ msgstr "اعتماد"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Approve Release"
 msgstr "اعتماد الأمر"
 
@@ -258,7 +242,6 @@ msgstr "سبب التجاوز"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Bypass Release Approval"
 msgstr "تجاوز اعتماد الأمر"
 
@@ -290,7 +273,6 @@ msgstr "ملغي"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Cancelled order %s cannot be submitted."
 msgstr "لا يمكن إرسال الأمر الملغي %s للاعتماد."
 
@@ -312,10 +294,8 @@ msgid "Company"
 msgstr "الشركة"
 
 #. module: po_release_strategy
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__currency_id
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__currency_id
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__currency_id
-#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_currency_id
 msgid "Company Currency"
 msgstr "عملة الشركة"
 
@@ -395,10 +375,15 @@ msgid "Description"
 msgstr "الوصف"
 
 #. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_mail_activity__display_name
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__display_name
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__display_name
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__display_name
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_line__display_name
 #: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__display_name
+#: model:ir.model.fields,field_description:po_release_strategy.field_res_company__display_name
+#: model:ir.model.fields,field_description:po_release_strategy.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "الاسم المعروض"
 
@@ -423,20 +408,20 @@ msgid "Function of the approver, e.g. Finance Manager."
 msgstr "وظيفة المعتمِد، مثل: المدير المالي."
 
 #. module: po_release_strategy
-#: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_search
-msgid "Group By"
-msgstr "تجميع حسب"
-
-#. module: po_release_strategy
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__has_message
 msgid "Has Message"
 msgstr "يحتوي على رسالة"
 
 #. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_mail_activity__id
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__id
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__id
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_line__id
 #: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__id
+#: model:ir.model.fields,field_description:po_release_strategy.field_res_company__id
+#: model:ir.model.fields,field_description:po_release_strategy.field_res_config_settings__id
 msgid "ID"
 msgstr "المعرف"
 
@@ -465,14 +450,6 @@ msgstr "المستخدم الحالي معتمِد"
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_is_follower
 msgid "Is Follower"
 msgstr "متابع"
-
-#. module: po_release_strategy
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line____last_update
-msgid "Last Modified on"
-msgstr "آخر تعديل في"
 
 #. module: po_release_strategy
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__write_uid
@@ -505,11 +482,6 @@ msgstr "حقل قابل للقفل"
 #: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
 msgid "Locked Fields"
 msgstr "الحقول المقفلة"
-
-#. module: po_release_strategy
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "المرفق الرئيسي"
 
 #. module: po_release_strategy
 #: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__max_amount
@@ -555,7 +527,6 @@ msgstr "الاسم"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid ""
 "No approval rule of release strategy \"%s\" applies to this amount: the "
 "order is released automatically."
@@ -625,21 +596,18 @@ msgstr ""
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Only release supervisors can bypass a release strategy."
 msgstr "يمكن لمشرفي الاعتماد فقط تجاوز استراتيجية الاعتماد."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Only requests for quotation can be submitted."
 msgstr "يمكن إرسال طلبات عروض الأسعار فقط للاعتماد."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid ""
 "Only the buyer, purchase managers or release supervisors can reset the "
 "release strategy of %s."
@@ -678,21 +646,18 @@ msgstr ""
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Order released and confirmed automatically."
 msgstr "تم اعتماد الأمر وتأكيده تلقائياً."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Order released. Waiting for the buyer to confirm it."
 msgstr "تم اعتماد الأمر. بانتظار تأكيده من المشتري."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Order submitted for release approval (%(strategy)s)."
 msgstr "تم إرسال الأمر للاعتماد (%(strategy)s)."
 
@@ -714,28 +679,24 @@ msgstr "بانتظار الاعتماد"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/wizard/po_release_action_wizard.py:0
-#, python-format
 msgid "Please fill in the notes."
 msgstr "يرجى إدخال الملاحظات."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Please give a reason for the bypass."
 msgstr "يرجى ذكر سبب التجاوز."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Please give a reason for the rejection."
 msgstr "يرجى ذكر سبب الرفض."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order_release_line.py:0
-#, python-format
 msgid "Please review purchase order %(order)s (%(amount)s) as %(role)s."
 msgstr "يرجى مراجعة أمر الشراء %(order)s (%(amount)s) بصفتك %(role)s."
 
@@ -776,14 +737,13 @@ msgid "Purchase Release Strategies"
 msgstr "استراتيجيات اعتماد المشتريات"
 
 #. module: po_release_strategy
-#: model:ir.module.category,name:po_release_strategy.module_category_po_release
+#: model:res.groups.privilege,name:po_release_strategy.res_groups_privilege_po_release
 msgid "Purchase Release Strategy"
 msgstr "استراتيجية اعتماد المشتريات"
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid ""
 "Purchase order %(order)s is released and confirmed. The following fields are"
 " locked by its release strategy: %(fields)s"
@@ -809,7 +769,6 @@ msgstr "اعتماد أمر الشراء"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid ""
 "Purchase order(s) %s must be released through their release strategy before "
 "confirmation."
@@ -826,7 +785,6 @@ msgstr "رفض"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Reject Release"
 msgstr "رفض الاعتماد"
 
@@ -885,6 +843,12 @@ msgid "Release Can Reset"
 msgstr "يمكنه إعادة التعيين"
 
 #. module: po_release_strategy
+#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__currency_id
+#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_currency_id
+msgid "Release Currency"
+msgstr "عملة الاعتماد"
+
+#. module: po_release_strategy
 #: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order__release_prev_state
 msgid "Release Prev State"
 msgstr "الحالة السابقة للاعتماد"
@@ -939,35 +903,30 @@ msgstr "مشرف الاعتماد"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Release approval bypassed by supervisor %s."
 msgstr "تم تجاوز الاعتماد بواسطة المشرف %s."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order_release_line.py:0
-#, python-format
 msgid "Release approval: %s"
 msgstr "اعتماد: %s"
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Release rejected by %s."
 msgstr "تم رفض الاعتماد بواسطة %s."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Release rejected: %s"
 msgstr "تم رفض الاعتماد: %s"
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order_release_line.py:0
-#, python-format
 msgid ""
 "Release rule \"%(role)s\": no active approver with access to purchase orders"
 " of %(company)s was found (%(approver)s)."
@@ -978,7 +937,6 @@ msgstr ""
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Release strategies are not enabled for %s."
 msgstr "استراتيجيات الاعتماد غير مفعلة للشركة %s."
 
@@ -991,21 +949,18 @@ msgstr "استراتيجية الاعتماد التي تُطبق تلقائيا
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Release strategy approved again."
 msgstr "تم اعتماد الأمر مرة أخرى."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Release strategy reset by %s."
 msgstr "تمت إعادة تعيين استراتيجية الاعتماد بواسطة %s."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid ""
 "Release strategy reset: the following locked fields were modified. Previous "
 "approvals have been cleared."
@@ -1027,7 +982,6 @@ msgstr "تاريخ الاعتماد النهائي"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Released: please confirm this purchase order."
 msgstr "تم الاعتماد: يرجى تأكيد أمر الشراء."
 
@@ -1056,7 +1010,6 @@ msgstr "إعادة تعيين الاعتماد"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Reset Release Strategy"
 msgstr "إعادة تعيين استراتيجية الاعتماد"
 
@@ -1068,7 +1021,6 @@ msgstr "إعادة تعيين استراتيجية الاعتماد"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "Reset the release strategy of %s before changing it."
 msgstr "أعد تعيين استراتيجية اعتماد %s قبل تغييرها."
 
@@ -1086,28 +1038,24 @@ msgstr "القاعدة"
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/po_release_strategy.py:0
-#, python-format
 msgid "Rule \"%s\": amounts cannot be negative."
 msgstr "القاعدة \"%s\": لا يمكن أن تكون المبالغ سالبة."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/po_release_strategy.py:0
-#, python-format
 msgid "Rule \"%s\": select the approver group."
 msgstr "القاعدة \"%s\": اختر مجموعة المعتمِدين."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/po_release_strategy.py:0
-#, python-format
 msgid "Rule \"%s\": select the approver user."
 msgstr "القاعدة \"%s\": اختر المستخدم المعتمِد."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/po_release_strategy.py:0
-#, python-format
 msgid "Rule \"%s\": the maximum amount must be greater than the minimum amount."
 msgstr "القاعدة \"%s\": يجب أن يكون الحد الأعلى أكبر من الحد الأدنى."
 
@@ -1192,28 +1140,24 @@ msgstr "تقني: الشركة تفرض استراتيجيات اعتماد ال
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/po_release_strategy.py:0
-#, python-format
 msgid "The approval deadline cannot be negative."
 msgstr "لا يمكن أن تكون مهلة الاعتماد سالبة."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/po_release_strategy.py:0
-#, python-format
 msgid "The following fields cannot be locked by a release strategy: %s"
 msgstr "لا يمكن قفل الحقول التالية بواسطة استراتيجية الاعتماد: %s"
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "The order was re-approved."
 msgstr "تم اعتماد الأمر مجدداً."
 
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid ""
 "The release strategy \"%(strategy)s\" belongs to another company than "
 "purchase order %(order)s."
@@ -1224,7 +1168,6 @@ msgstr ""
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "The release strategy of %s must belong to the same company."
 msgstr "يجب أن تتبع استراتيجية اعتماد %s الشركة نفسها."
 
@@ -1238,7 +1181,6 @@ msgstr "سيتم تخطي مراحل الاعتماد المتبقية وتطب�
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/mail_activity.py:0
-#, python-format
 msgid ""
 "This activity belongs to a purchase release strategy. Use the \"Approve\" or"
 " \"Reject\" buttons on the purchase order instead."
@@ -1318,8 +1260,6 @@ msgstr ""
 #. module: po_release_strategy
 #. odoo-python
 #: code:addons/po_release_strategy/models/purchase_order.py:0
-#: code:addons/po_release_strategy/models/purchase_order.py:0
-#, python-format
 msgid "You are not an approver of the current release stage of %s."
 msgstr "لست معتمِداً في مرحلة الاعتماد الحالية للأمر %s."
 
