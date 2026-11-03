@@ -502,7 +502,7 @@ class TestPoReleaseStrategy(TransactionCase):
         self.assertEqual(len(po.picking_ids), 1)
         # receiving goods must not trigger the locked-field reset
         picking = po.picking_ids
-        picking.move_ids.quantity_done = 1
+        picking.move_ids.write({'quantity': 1, 'picked': True})
         picking.button_validate()
         self.assertEqual(po.order_line.qty_received, 1)
         self.assertEqual(po.release_state, 'approved')

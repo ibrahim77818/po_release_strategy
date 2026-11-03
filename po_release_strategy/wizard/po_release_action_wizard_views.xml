@@ -9,29 +9,29 @@
                 <field name="notes_required" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
                 <div class="alert alert-warning o_po_release_alert" role="alert"
-                     attrs="{'invisible': [('action', '!=', 'bypass')]}">
+                     invisible="action != 'bypass'">
                     The remaining approval stages will be skipped and the post-approval action applied immediately.
                 </div>
                 <div class="alert alert-info o_po_release_alert" role="alert"
-                     attrs="{'invisible': [('action', '!=', 'reset')]}">
+                     invisible="action != 'reset'">
                     All approvals will be cleared and the order will need to be submitted again.
                 </div>
                 <group>
                     <field name="order_id"/>
                     <field name="release_amount_company"/>
-                    <field name="role_names" attrs="{'invisible': [('role_names', '=', False)]}"/>
+                    <field name="role_names" invisible="not role_names"/>
                     <field name="notes" placeholder="Add your comments..."
-                           attrs="{'required': [('notes_required', '=', True)]}"/>
+                           required="notes_required"/>
                 </group>
                 <footer>
                     <button name="action_confirm" type="object" string="Approve" class="btn-primary"
-                            attrs="{'invisible': [('action', '!=', 'approve')]}" data-hotkey="q"/>
+                            invisible="action != 'approve'" data-hotkey="q"/>
                     <button name="action_confirm" type="object" string="Reject" class="btn-danger"
-                            attrs="{'invisible': [('action', '!=', 'reject')]}" data-hotkey="q"/>
+                            invisible="action != 'reject'" data-hotkey="q"/>
                     <button name="action_confirm" type="object" string="Bypass Approval" class="btn-primary"
-                            attrs="{'invisible': [('action', '!=', 'bypass')]}" data-hotkey="q"/>
+                            invisible="action != 'bypass'" data-hotkey="q"/>
                     <button name="action_confirm" type="object" string="Reset" class="btn-primary"
-                            attrs="{'invisible': [('action', '!=', 'reset')]}" data-hotkey="q"/>
+                            invisible="action != 'reset'" data-hotkey="q"/>
                     <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
                 </footer>
             </form>

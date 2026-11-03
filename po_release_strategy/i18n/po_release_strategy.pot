@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 11:12+0000\n"
-"PO-Revision-Date: 2026-11-03 11:12+0000\n"
+"POT-Creation-Date: 2026-11-03 12:13+0000\n"
+"PO-Revision-Date: 2026-11-03 12:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -63,13 +63,6 @@ msgstr ""
 msgid ""
 "<i class=\"fa fa-times\" role=\"img\" aria-label=\"Rejected\" title=\"Rejected\"/>\n"
 "                    <span>The release was rejected. Update the order and submit it again.</span>"
-msgstr ""
-
-#. module: po_release_strategy
-#: model_terms:ir.ui.view,arch_db:po_release_strategy.res_config_settings_view_form_po_release
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 
 #. module: po_release_strategy
@@ -459,14 +452,6 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: po_release_strategy
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: po_release_strategy
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__write_uid
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__write_uid
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__write_uid
@@ -496,11 +481,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__locked_field_ids
 #: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
 msgid "Locked Fields"
-msgstr ""
-
-#. module: po_release_strategy
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: po_release_strategy

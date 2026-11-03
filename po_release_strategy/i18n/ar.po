@@ -1,7 +1,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: Ibrahim Yahia\n"
 "Language-Team: Arabic\n"
@@ -66,15 +66,6 @@ msgid ""
 msgstr ""
 "<i class=\"fa fa-times\" role=\"img\" aria-label=\"مرفوض\" title=\"مرفوض\"/>\n"
 "                    <span>تم رفض الاعتماد. قم بتحديث الأمر ثم أرسله للاعتماد مرة أخرى.</span>"
-
-#. module: po_release_strategy
-#: model_terms:ir.ui.view,arch_db:po_release_strategy.res_config_settings_view_form_po_release
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"القيم المحددة هنا خاصة "
-"بالشركة.\" groups=\"base.group_multi_company\"/>"
 
 #. module: po_release_strategy
 #. odoo-python
@@ -467,14 +458,6 @@ msgid "Is Follower"
 msgstr "متابع"
 
 #. module: po_release_strategy
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule____last_update
-#: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line____last_update
-msgid "Last Modified on"
-msgstr "آخر تعديل في"
-
-#. module: po_release_strategy
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_action_wizard__write_uid
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__write_uid
 #: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy_rule__write_uid
@@ -505,11 +488,6 @@ msgstr "حقل قابل للقفل"
 #: model_terms:ir.ui.view,arch_db:po_release_strategy.po_release_strategy_view_form
 msgid "Locked Fields"
 msgstr "الحقول المقفلة"
-
-#. module: po_release_strategy
-#: model:ir.model.fields,field_description:po_release_strategy.field_po_release_strategy__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "المرفق الرئيسي"
 
 #. module: po_release_strategy
 #: model:ir.model.fields,field_description:po_release_strategy.field_purchase_order_release_line__max_amount
