@@ -30,6 +30,7 @@ NON_LOCKABLE_FIELDS = {
     'effective_date', 'mail_reminder_confirmed', 'mail_reception_confirmed',
     'group_id', 'picking_ids', 'priority', 'is_shipped', 'tax_totals',
     'country_code', 'tax_country_id', 'amount_total_cc', 'user_id',
+    'mail_reception_declined',
 }
 # Computed totals that are still meaningful to freeze.
 LOCKABLE_COMPUTED_FIELDS = {'amount_untaxed', 'amount_tax', 'amount_total'}
@@ -53,7 +54,7 @@ class PurchaseOrder(models.Model):
         'purchase.order.release.line', 'order_id', string='Release Approvals',
         copy=False)
     release_currency_id = fields.Many2one(
-        related='company_id.currency_id', string='Company Currency')
+        related='company_id.currency_id', string='Release Currency')
     release_amount_company = fields.Monetary(
         string='Release Amount', currency_field='release_currency_id',
         copy=False, readonly=True,
@@ -175,7 +176,9 @@ class PurchaseOrder(models.Model):
                 continue
             if field.type == 'one2many' and name != 'order_line':
                 continue
-            if field.compute and name not in LOCKABLE_COMPUTED_FIELDS:
+            # pure computed values cannot be edited by users; computed fields
+            # that stay editable (v18: currency_id, date_planned, ...) can be locked
+            if field.compute and field.readonly and name not in LOCKABLE_COMPUTED_FIELDS:
                 continue
             if field.related:
                 continue

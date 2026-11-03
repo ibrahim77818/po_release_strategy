@@ -7,16 +7,13 @@
         <field name="arch" type="xml">
             <!-- Native confirm buttons are replaced by "Submit for Approval" while not released -->
             <xpath expr="//header/button[@id='bid_confirm']" position="attributes">
-                <attribute name="states"/>
-                <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'sent'), '&amp;', ('release_required', '=', True), ('release_state', '!=', 'approved')]}</attribute>
+                <attribute name="invisible">state != 'sent' or (release_required and release_state != 'approved')</attribute>
             </xpath>
             <xpath expr="//header/button[@id='draft_confirm']" position="attributes">
-                <attribute name="states"/>
-                <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'draft'), '&amp;', ('release_required', '=', True), ('release_state', '!=', 'approved')]}</attribute>
+                <attribute name="invisible">state != 'draft' or (release_required and release_state != 'approved')</attribute>
             </xpath>
             <xpath expr="//header/button[@name='button_approve']" position="attributes">
-                <attribute name="states"/>
-                <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'to approve'), ('release_required', '=', True)]}</attribute>
+                <attribute name="invisible">state != 'to approve' or release_required</attribute>
             </xpath>
             <xpath expr="//header/button[@id='bid_confirm']" position="before">
                 <field name="release_required" invisible="1"/>
@@ -25,34 +22,34 @@
                 <field name="release_can_reset" invisible="1"/>
                 <button name="action_release_submit" type="object" string="Submit for Approval"
                         class="oe_highlight" data-hotkey="v"
-                        attrs="{'invisible': ['|', '|', ('release_required', '=', False), ('state', 'not in', ('draft', 'sent')), ('release_state', 'not in', ('draft', 'rejected'))]}"/>
+                        invisible="not release_required or state not in ('draft', 'sent') or release_state not in ('draft', 'rejected')"/>
                 <button name="action_release_approve" type="object" string="Approve"
                         class="oe_highlight" data-hotkey="z"
-                        attrs="{'invisible': [('release_can_approve', '=', False)]}"/>
+                        invisible="not release_can_approve"/>
                 <button name="action_release_reject" type="object" string="Reject"
-                        attrs="{'invisible': [('release_can_approve', '=', False)]}"/>
+                        invisible="not release_can_approve"/>
                 <button name="action_release_bypass" type="object" string="Bypass Approval"
                         groups="po_release_strategy.group_po_release_supervisor"
-                        attrs="{'invisible': ['|', ('release_required', '=', False), ('release_state', '!=', 'pending')]}"/>
+                        invisible="not release_required or release_state != 'pending'"/>
                 <button name="action_release_reset" type="object" string="Reset Release"
-                        attrs="{'invisible': [('release_can_reset', '=', False)]}"/>
+                        invisible="not release_can_reset"/>
             </xpath>
 
             <!-- Status banners -->
             <xpath expr="//sheet/div[@name='button_box']" position="after">
                 <div class="alert alert-warning o_po_release_alert" role="alert"
-                     attrs="{'invisible': ['|', ('release_required', '=', False), ('release_state', '!=', 'pending')]}">
+                     invisible="not release_required or release_state != 'pending'">
                     <i class="fa fa-hourglass-half" role="img" aria-label="Waiting" title="Waiting"/>
                     <span>Waiting for release approval by:</span>
                     <field name="release_pending_user_ids" widget="many2many_tags" readonly="1" class="o_po_release_inline"/>
                 </div>
                 <div class="alert alert-success o_po_release_alert" role="alert"
-                     attrs="{'invisible': ['|', '|', ('release_required', '=', False), ('release_state', '!=', 'approved'), ('state', 'not in', ('draft', 'sent'))]}">
+                     invisible="not release_required or release_state != 'approved' or state not in ('draft', 'sent')">
                     <i class="fa fa-check" role="img" aria-label="Released" title="Released"/>
                     <span>This order is released and ready to be confirmed.</span>
                 </div>
                 <div class="alert alert-danger o_po_release_alert" role="alert"
-                     attrs="{'invisible': ['|', ('release_required', '=', False), ('release_state', '!=', 'rejected')]}">
+                     invisible="not release_required or release_state != 'rejected'">
                     <i class="fa fa-times" role="img" aria-label="Rejected" title="Rejected"/>
                     <span>The release was rejected. Update the order and submit it again.</span>
                 </div>
@@ -60,14 +57,14 @@
 
             <xpath expr="//field[@name='partner_ref']" position="after">
                 <field name="release_strategy_id" options="{'no_create': True}"
-                       attrs="{'invisible': [('release_required', '=', False)],
-                               'required': [('release_required', '=', True), ('state', 'in', ('draft', 'sent'))],
-                               'readonly': [('release_state', 'in', ('pending', 'approved'))]}"/>
+                       invisible="not release_required"
+                       required="release_required and state in ('draft', 'sent')"
+                       readonly="release_state in ('pending', 'approved')"/>
             </xpath>
 
             <xpath expr="//notebook" position="inside">
                 <page string="Release Strategy" name="release_strategy"
-                      attrs="{'invisible': [('release_required', '=', False), ('release_line_ids', '=', [])]}">
+                      invisible="not release_required and not release_line_ids">
                     <group>
                         <group>
                             <field name="release_state" widget="badge"
@@ -77,18 +74,18 @@
                                    decoration-danger="release_state == 'rejected'"/>
                             <field name="release_currency_id" invisible="1"/>
                             <field name="release_amount_company"/>
-                            <field name="release_reset_count" attrs="{'invisible': [('release_reset_count', '=', 0)]}"/>
+                            <field name="release_reset_count" invisible="release_reset_count == 0"/>
                         </group>
                         <group>
                             <field name="release_submit_date"/>
                             <field name="release_approval_date"/>
-                            <field name="release_bypassed" attrs="{'invisible': [('release_bypassed', '=', False)]}"/>
-                            <field name="release_bypass_user_id" attrs="{'invisible': [('release_bypassed', '=', False)]}"/>
-                            <field name="release_bypass_reason" attrs="{'invisible': [('release_bypassed', '=', False)]}"/>
+                            <field name="release_bypassed" invisible="not release_bypassed"/>
+                            <field name="release_bypass_user_id" invisible="not release_bypassed"/>
+                            <field name="release_bypass_reason" invisible="not release_bypassed"/>
                         </group>
                     </group>
                     <field name="release_line_ids" readonly="1">
-                        <tree decoration-muted="state in ('waiting', 'cancelled')"
+                        <list decoration-muted="state in ('waiting', 'cancelled')"
                               decoration-warning="state == 'pending'"
                               decoration-success="state in ('approved', 'bypassed')"
                               decoration-danger="state == 'rejected'">
@@ -96,7 +93,7 @@
                             <field name="role"/>
                             <field name="approver_type" optional="hide"/>
                             <field name="approver_display"/>
-                            <field name="currency_id" invisible="1"/>
+                            <field name="currency_id" column_invisible="True"/>
                             <field name="min_amount" optional="hide"/>
                             <field name="max_amount" optional="hide"/>
                             <field name="state" widget="badge"
@@ -108,7 +105,7 @@
                             <field name="approved_by_id" widget="many2one_avatar_user"/>
                             <field name="rejected_by_id" optional="hide" widget="many2one_avatar_user"/>
                             <field name="notes"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
@@ -183,7 +180,7 @@
     <record id="action_po_release_my_approvals" model="ir.actions.act_window">
         <field name="name">Release Approvals</field>
         <field name="res_model">purchase.order</field>
-        <field name="view_mode">tree,form,kanban,activity</field>
+        <field name="view_mode">list,form,kanban,activity</field>
         <field name="view_id" ref="purchase.purchase_order_kpis_tree"/>
         <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
         <field name="domain">[('release_state', '=', 'pending')]</field>

@@ -452,6 +452,22 @@ class TestPoReleaseStrategy(TransactionCase):
         with self.assertRaises(UserError):
             po.release_strategy_id = other
 
+    def test_66_lockable_fields_include_editable_computed(self):
+        names = self.env['purchase.order']._po_release_lockable_field_names()
+        # editable even when computed (computed + readonly=False since v18)
+        for name in ('partner_id', 'currency_id', 'order_line', 'amount_total', 'payment_term_id'):
+            self.assertIn(name, names)
+        for name in ('state', 'name', 'invoice_status', 'mail_reception_declined', 'release_state'):
+            self.assertNotIn(name, names)
+        # locking the currency resets a pending release
+        self.strategy.locked_field_ids = [Command.link(
+            self.env['ir.model.fields']._get('purchase.order', 'currency_id').id)]
+        po = self._create_po(price=100)
+        po.button_confirm()
+        other = self.env['res.currency'].create({'name': 'RSY', 'symbol': 'Y', 'rounding': 0.01})
+        po.currency_id = other
+        self.assertEqual(po.release_reset_count, 1)
+
     # ------------------------------------------------------------------
     # UI
     # ------------------------------------------------------------------
@@ -490,7 +506,7 @@ class TestPoReleaseStrategy(TransactionCase):
         if 'picking_ids' not in self.env['purchase.order']._fields:
             self.skipTest('purchase_stock is not installed')
         stockable = self.env['product.product'].create({
-            'name': 'Release Stockable', 'type': 'product', 'taxes_id': False,
+            'name': 'Release Stockable', 'type': 'consu', 'is_storable': True, 'taxes_id': False,
             'supplier_taxes_id': False})
         po = self._create_po(price=20000)
         po.order_line.product_id = stockable
@@ -502,7 +518,7 @@ class TestPoReleaseStrategy(TransactionCase):
         self.assertEqual(len(po.picking_ids), 1)
         # receiving goods must not trigger the locked-field reset
         picking = po.picking_ids
-        picking.move_ids.quantity_done = 1
+        picking.move_ids.write({'quantity': 1, 'picked': True})
         picking.button_validate()
         self.assertEqual(po.order_line.qty_received, 1)
         self.assertEqual(po.release_state, 'approved')

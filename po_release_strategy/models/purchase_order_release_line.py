@@ -78,12 +78,9 @@ class PurchaseOrderReleaseLine(models.Model):
         order = self.order_id
         allowed = self.env['res.users']
         for user in self._get_approver_users():
-            model = self.env['purchase.order'].with_user(user)
-            if not model.check_access_rights('read', raise_exception=False):
-                continue
-            if not order.with_user(user)._filter_access_rules('read'):
-                continue
-            allowed |= user
+            # has_access() checks both the ACLs and the record rules (v18 API)
+            if order.with_user(user).has_access('read'):
+                allowed |= user
         return allowed
 
     # ------------------------------------------------------------------

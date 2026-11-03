@@ -2,7 +2,7 @@
 Purchase Order Release Strategy
 ===============================
 
-Multi-level, amount-based approval ("release strategy") for Odoo 16
+Multi-level, amount-based approval ("release strategy") for Odoo 18
 purchase orders. Works on Community and Enterprise, depends only on
 ``purchase`` and ``mail``.
 
